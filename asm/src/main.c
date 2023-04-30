@@ -63,6 +63,7 @@ int main(int ac,char **av)
         return 0;
     }
     char **file = read_file_file(av[1]);
+    if (file == NULL) return 84;
     if (file != NULL) {
         for (size_t i = 0; file[i] != NULL; i++) {
             my_printf("%s", file[i]);
