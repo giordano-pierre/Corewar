@@ -19,7 +19,12 @@
     typedef struct corewar {
     } corewar_t;
 
-    void print_array(char **array);
+    // recover_file.c;
     void free_array(char **array);
+    void print_array(char **array);
+
+    // array.c;
+    size_t count_lines(FILE *file);
+    char **read_file(const char *file_name);
 
 #endif /* !SOLVER_H_ */
