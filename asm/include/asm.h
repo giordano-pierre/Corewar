@@ -16,7 +16,12 @@
     typedef struct asmstruct {
     } asm_t;
 
+    // recover_file.c;
     void free_array(char **array);
     void print_array(char **array);
+
+    // array.c;
+    size_t count_lines(FILE *file);
+    char **read_file(const char *file_name);
 
 #endif /* !GENERATOR_H_ */

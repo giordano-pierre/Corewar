@@ -82,7 +82,7 @@ int main(int ac, char **av)
         print_h();
         return 0;
     }
-    char **file = read_file_file(av[1]);
+    char **file = read_file(av[1]);
     if (bad_enter(file))
         return 84;
     if (file != NULL) {
