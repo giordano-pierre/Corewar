@@ -28,7 +28,7 @@ size_t count_lines(FILE *file)
     return lines_count;
 }
 
-char **read_file_file(const char *file_name)
+char **read_file(const char *file_name)
 {
     FILE *file = fopen(file_name, "r");
     if (file == NULL) {
