@@ -33,4 +33,8 @@
     // asm.c
     void asm_main(char **file, char *file_name);
 
+    //toolbox.c
+    ssize_t my_strlen_long(char const *str);
+    int have_file_point_s(const char *str);
+
 #endif /* !GENERATOR_H_ */
