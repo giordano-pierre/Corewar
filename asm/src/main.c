@@ -40,7 +40,6 @@ int main(int ac,char **av)
     asm_main(file, av[1]);
     if (file != NULL) {
         for (size_t i = 0; file[i] != NULL; i++) {
-            my_printf("%s", file[i]);
             free(file[i]);
         }
         free(file);

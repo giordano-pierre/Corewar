@@ -35,8 +35,8 @@ int bad_enter(char **file)
 
 int main(int ac, char **av)
 {
-    if (ac != 2) {
-        write(2, "corewar: Bad number of arguments.\n", 34);
+    if (ac < 3) {
+        write(2, "corewar: Bad number of champions.\n", 34);
         return 84;
     }
     if (my_strcmp(av[1], "-h") == 0) {
@@ -46,9 +46,9 @@ int main(int ac, char **av)
     char **file = read_file(av[1]);
     if (bad_enter(file))
         return 84;
+    corewar_main(file, av);
     if (file != NULL) {
         for (size_t i = 0; file[i] != NULL; i++) {
-            my_printf("%s", file[i]);
             free(file[i]);
         }
         free(file);
