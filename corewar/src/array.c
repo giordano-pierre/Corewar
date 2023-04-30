@@ -11,9 +11,9 @@ void free_array(char **array)
     if (array == NULL)
         return;
     for (int i = 0; array[i] != NULL; i++) {
-        free (array[i]);
+        free(array[i]);
     }
-    free (array);
+    free(array);
 }
 
 void print_array(char **array)
@@ -22,8 +22,8 @@ void print_array(char **array)
         return;
     int i = 0;
     for (; array[i + 1] != NULL; i++) {
-        write (1, array[i], strlen (array[i]));
-        write (1, "\n", 1);
+        write(1, array[i], my_strlen(array[i]));
+        write(1, "\n", 1);
     }
-    write (1, array[i], strlen (array[i]));
+    write(1, array[i], my_strlen(array[i]));
 }

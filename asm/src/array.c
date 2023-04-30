@@ -22,10 +22,10 @@ void print_array(char **array)
         return;
     int i = 0;
     for (; array[i + 1] != NULL; i++) {
-        write(1, array[i], strlen(array[i]));
+        write(1, array[i], my_strlen(array[i]));
         write(1, "\n", 1);
     }
-    write(1, array[i], strlen(array[i]));
+    write(1, array[i], my_strlen(array[i]));
 }
 
 void free_struct(void)
