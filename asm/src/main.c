@@ -37,6 +37,7 @@ int main(int ac,char **av)
     char **file = read_file(av[1]);
     if (bad_enter(file))
         return 84;
+    asm_main(file, av[1]);
     if (file != NULL) {
         for (size_t i = 0; file[i] != NULL; i++) {
             my_printf("%s", file[i]);
