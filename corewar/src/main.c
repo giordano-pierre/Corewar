@@ -41,7 +41,7 @@ char **read_file_file(const char *file_name)
 {
     FILE *file = fopen(file_name, "r");
     if (file == NULL) {
-        write(2, "asm: Bad file", 13);
+        write(2, "asm: Bad file\n", 14);
         return NULL;
     }
     size_t lines_count = count_lines(file);
@@ -61,6 +61,17 @@ char **read_file_file(const char *file_name)
     return final_file;
 }
 
+int bad_enter(char **file)
+{
+    if (file == NULL)
+        return 1;
+    if (file[0] == NULL) {
+        write(2, "corewar: it's not a file !\n", 27);
+        return 1;
+    }
+    return 0;
+}
+
 int main(int ac, char **av)
 {
     if (ac != 2) {
@@ -72,7 +83,8 @@ int main(int ac, char **av)
         return 0;
     }
     char **file = read_file_file(av[1]);
-    if (file == NULL) return 84;
+    if (bad_enter(file))
+        return 84;
     if (file != NULL) {
         for (size_t i = 0; file[i] != NULL; i++) {
             my_printf("%s", file[i]);
