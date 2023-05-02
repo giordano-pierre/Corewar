@@ -30,7 +30,7 @@ void create_file(char *name, char **text)
 
 char *name_file_point_core(char *file_name)
 {
-    size_t len = strlen(file_name);
+    size_t len = my_strlen(file_name);
     char *new_name = malloc(len + 2);
 
     my_strncpy(new_name, file_name, len);
