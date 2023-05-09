@@ -13,11 +13,8 @@
 #include <sys/stat.h>
 #include "../../lib/printf/include/my_printf.h"
 
-#ifndef GENERATOR_H_
-    #define GENERATOR_H_
-
-    typedef struct asmstruct {
-    } asm_t;
+#ifndef ASM_H_
+    #define ASM_H_
 
     // main.c
     void print_h(void);
@@ -37,7 +34,11 @@
     ssize_t my_strlen_long(char const *str);
     int have_file_point_s(const char *str);
 
+    // error handling
     int all_error(char **tab);
     int if_name_exists(char **tab);
+
+    // array.c
+    char **my_str_to_word_array(char const *str);
 
 #endif /* !GENERATOR_H_ */
