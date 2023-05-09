@@ -6,41 +6,70 @@
 */
 #include "../include/asm.h"
 
-size_t count_lines(FILE *file)
+int have_file_point_s(const char *str)
 {
-    size_t lines_count = 0;
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read;
+    int ind = 0;
 
-    while ((read = getline(&line, &len, file)) != -1) {
-        lines_count++;
+    while (str[ind + 1] != '\0') {
+        if (str[ind] == '.' && str[ind + 1] == 's') {
+            return 0;
+        }
+        ind++;
     }
-    fseek(file, 0, SEEK_SET);
-    free(line);
-    return lines_count;
+    return -1;
 }
 
-char **read_file(const char *file_name)
+int skip_line(char *line)
 {
-    FILE *file = fopen(file_name, "r");
-    if (file == NULL) {
-        write(2, "asm: Bad file\n", 14);
-        return NULL;
+    for (int i = 0; line[i] != '#' && line[i] != '\n' && line[i]; i++) {
+        if (line[i] != '\t' && line[i] != ' ')
+            return 0;
     }
-    size_t lines_count = count_lines(file);
-    char **final_file = malloc((lines_count + 1) * sizeof(char *));
+    return -1;
+}
+
+int verif_file(char *filename, FILE *fd)
+{
+    if (fd == NULL) {
+        write(2, "asm: No such file.\n", 19);
+        return -1;
+    }
+    if (have_file_point_s(filename) == -1) {
+        print_h();
+        return -1;
+    }
+    return 0;
+}
+
+int file_empty(char **file)
+{
+    if (file[0] == NULL) {
+        free(file);
+        write(2, "asm: File is empty.\n", 20);
+        return -1;
+    }
+    return 0;
+}
+
+char **recup_file(char *filename)
+{
+    char **file;
     char *line = NULL;
     size_t len = 0;
-    ssize_t read;
-    size_t i = 0;
-    while ((read = getline(&line, &len, file)) != -1) {
-        final_file[i] = malloc((read + 1) * sizeof(char));
-        my_strcpy(final_file[i], line);
-        i++;
+    FILE *fd = fopen(filename, "r");
+
+    if (verif_file(filename, fd))
+        return NULL;
+    file = malloc(sizeof(char *) * 1);
+    file[0] = NULL;
+    while ((getline(&line, &len, fd) != -1)) {
+        if (skip_line(line) == -1)
+            continue;
+        file = add_line(file, my_strdup(line));
     }
-    fclose(file);
     free(line);
-    final_file[i] = NULL;
-    return final_file;
+    fclose(fd);
+    if (file_empty(file) == -1)
+        return NULL;
+    return file;
 }

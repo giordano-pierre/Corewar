@@ -13,17 +13,6 @@ void print_h(void)
     my_printf("executable in the Virtual Machine.\n");
 }
 
-int bad_enter(char **file)
-{
-    if (file == NULL)
-        return 1;
-    if (file[0] == NULL) {
-        write(2, "asm: it's not a file !\n", 23);
-        return 1;
-    }
-    return 0;
-}
-
 int main(int ac,char **av)
 {
     if (ac != 2) {
