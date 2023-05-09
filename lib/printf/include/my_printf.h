@@ -4,6 +4,7 @@
 ** File description:
 ** my_printf
 */
+#include <stdlib.h>
 #include <stdarg.h>
 
 #ifndef MY_PRINTF_H_
