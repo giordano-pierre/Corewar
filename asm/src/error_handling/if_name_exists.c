@@ -7,27 +7,21 @@
 
 #include "../../include/asm.h"
 
+
 int if_name_exists(char **tab)
 {
-    int i = 0;
-    int str;
-    char *name = NULL;
-    while (tab[i] != NULL) {
-        str = my_strncmp(tab[i], ".name", 5);
-        if (str == 0) {
-            return -1;
-        }
-        i++;
-    }
-    // if (name != NULL) {
-    //     printf("%s", name);
-    //     //     // int i = 0;
-    //     //     // while (name[i] != '\n' && name[i] != '\0') {
-    //     //     //     i++;
-    //     //     // }
-    //     //     // name[i] = '\0';
-    // } else {
-    //     printf("not exist\n");
+    char **tab_bis = my_str_to_word_array(tab[0]);
+
+    // if (tab_bis[0] != NULL) {
+    //     if (my_strcmp(tab_bis[0], NAME_CMD_STRING) == 0) {
+    //         return -1;
+    //     }
+    // }
+
+    // int len_name = my_strlen(tab_bis[1]);
+
+    // if (len_name > PROG_NAME_LENGTH) {
+    //     return -1;
     // }
     return 0;
 }
