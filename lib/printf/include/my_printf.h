@@ -5,6 +5,7 @@
 ** my_printf
 */
 #include <stdarg.h>
+#include <stdlib.h>
 
 #ifndef MY_PRINTF_H_
     #define MY_PRINTF_H_
