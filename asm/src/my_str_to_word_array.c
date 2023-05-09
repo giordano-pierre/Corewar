@@ -25,7 +25,7 @@ int count_word (char const *str)
         while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
             i++;
         if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t'
-             && str[i] != '\0' && str[i] != '#')
+            && str[i] != '\0' && str[i] != '#')
             nb_word++;
         while (str[i] != ' ' && str[i] != '\n' && str[i] != '\t'
             && str[i] != '\0' && str[i] != '#')

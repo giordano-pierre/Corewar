@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - 'ga-ignore-*'
+      - 'error_handling'
   pull_request:
     branches-ignore:
       - "ga-ignore-*"
