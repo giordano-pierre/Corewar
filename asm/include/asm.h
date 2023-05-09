@@ -27,6 +27,7 @@
     char **add_line(char **array, char *line);
     void print_array(char **array);
     void free_array(char **array);
+    int my_arraylen (char **array);
 
     //my_str_to_word_array.c
     char **my_str_to_word_array(char const *str);
