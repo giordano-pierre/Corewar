@@ -12,6 +12,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "../../lib/printf/include/my_printf.h"
+#include "../../op.h"
 
 #ifndef ASM_H_
     #define ASM_H_
@@ -37,6 +38,7 @@
     // error handling
     int all_error(char **tab);
     int if_name_exists(char **tab);
+    int if_comment_exists(char **tab);
 
     // array.c
     char **my_str_to_word_array(char const *str);
