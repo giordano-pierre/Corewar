@@ -13,17 +13,6 @@ void print_h(void)
     my_printf("executable in the Virtual Machine.\n");
 }
 
-int bad_enter(char **file)
-{
-    if (file == NULL)
-        return 1;
-    if (file[0] == NULL) {
-        write(2, "asm: it's not a file !\n", 23);
-        return 1;
-    }
-    return 0;
-}
-
 int main(int ac,char **av)
 {
     if (ac != 2) {
@@ -34,15 +23,10 @@ int main(int ac,char **av)
         print_h();
         return 0;
     }
-    char **file = read_file(av[1]);
-    if (bad_enter(file))
+    char **file = recup_file(av[1]);
+    if (file == NULL)
         return 84;
-    asm_main(file, av[1]);
-    if (file != NULL) {
-        for (size_t i = 0; file[i] != NULL; i++) {
-            free(file[i]);
-        }
-        free(file);
-    }
+    print_array(file);
+    free_array(file);
     return 0;
 }

@@ -21,13 +21,23 @@ void print_array(char **array)
     if (array == NULL)
         return;
     int i = 0;
-    for (; array[i + 1] != NULL; i++) {
+    for (; array[i] != NULL; i++) {
         write(1, array[i], my_strlen(array[i]));
-        write(1, "\n", 1);
     }
-    write(1, array[i], my_strlen(array[i]));
 }
 
-void free_struct(void)
+char **add_line(char **array, char *line)
 {
+    int size = 0;
+    char **new = NULL;
+
+    while (array[size] != NULL)
+        size++;
+    new = malloc(sizeof(char *) * (size + 2));
+    for (int i = 0; i < size; i++)
+        new[i] = array[i];
+    new[size] = my_strdup(line);
+    new[size + 1] = NULL;
+    free(array);
+    return new;
 }
