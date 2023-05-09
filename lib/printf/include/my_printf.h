@@ -130,4 +130,5 @@
     char *my_strncat(char *dest, char const *src, int nb);
     int my_ispos_p(int nb);
     void my_put_float_real(float p_number);
+    char *my_strdup(char const *src);
 #endif /* !MY_PRINTF_H_ */
