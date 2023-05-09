@@ -4,13 +4,10 @@
 ** File description:
 ** asm
 */
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#include <unistd.h>
 #include "../../lib/printf/include/my_printf.h"
 
 #ifndef ASM_H_
@@ -19,22 +16,23 @@
     // main.c
     void print_h(void);
 
-    // recover_file.c;
-    void free_array(char **array);
-    void print_array(char **array);
-
-    // array.c;
-    size_t count_lines(FILE *file);
-    char **read_file(const char *file_name);
-
-    // asm.c
-    void asm_main(char **file, char *file_name);
-
-    //toolbox.c
-    ssize_t my_strlen_long(char const *str);
+    // recover_file.c
+    int skip_line(char *line);
+    int verif_file(char *filename, FILE *fd);
+    int file_empty(char **file);
+    char **recup_file(char *filename);
     int have_file_point_s(const char *str);
 
     // array.c
+    char **add_line(char **array, char *line);
+    void print_array(char **array);
+    void free_array(char **array);
+
+    //my_str_to_word_array.c
     char **my_str_to_word_array(char const *str);
+    int count_word (char const *str);
+    int count_char(char const *str, int i);
+
+    ssize_t my_strlen_long(char const *str);
 
 #endif /* !ASM_H_ */
