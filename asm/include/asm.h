@@ -37,4 +37,7 @@
     ssize_t my_strlen_long(char const *str);
     int have_file_point_s(const char *str);
 
+    int all_error(char **tab);
+    int if_name_exists(char **tab);
+
 #endif /* !GENERATOR_H_ */
