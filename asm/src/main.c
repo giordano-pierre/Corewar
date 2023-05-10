@@ -23,11 +23,11 @@ int main(int ac,char **av)
         print_h();
         return 0;
     }
-    char **file = read_file(av[1]);
-    if_name_exists(file);
+    char **file = recup_file(av[1]);
+    // if_name_exists(file);
     // if_comment_exists(file);
-    // if (all_error(file) == -1)
-    //     return 84;
+    if (all_error(file) == -1)
+        return 84;
     // if (bad_enter(file))
     //     return 84;
     // asm_main(file, av[1]);
