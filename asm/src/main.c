@@ -26,7 +26,7 @@ int main(int ac,char **av)
     char **file = recup_file(av[1]);
     if (file == NULL)
         return 84;
-    print_array(file);
+    my_asm(file, av[1]);
     free_array(file);
     return 0;
 }
