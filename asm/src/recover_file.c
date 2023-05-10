@@ -21,7 +21,8 @@ int have_file_point_s(const char *str)
 
 int skip_line(char *line)
 {
-    for (int i = 0; line[i] != '#' && line[i] != '\n' && line[i]; i++) {
+    for (int i = 0; line[i] != COMMENT_CHAR && line[i] != '\n'
+    && line[i]; i++) {
         if (line[i] != '\t' && line[i] != ' ')
             return 0;
     }
@@ -65,7 +66,7 @@ char **recup_file(char *filename)
     while ((getline(&line, &len, fd) != -1)) {
         if (skip_line(line) == -1)
             continue;
-        file = add_line(file, my_strdup(line));
+        file = add_line(file, line);
     }
     free(line);
     fclose(fd);
