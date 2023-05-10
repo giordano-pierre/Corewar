@@ -13,7 +13,7 @@ void print_h(void)
     my_printf("executable in the Virtual Machine.\n");
 }
 
-int main(int ac,char **av)
+int main(int ac, char **av)
 {
     if (ac != 2) {
         write(2, "asm: Bad number of arguments.\n", 30);
