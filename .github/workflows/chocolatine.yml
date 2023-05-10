@@ -33,11 +33,11 @@ jobs:
         IFS=$'\n'
         for line in $(cat coding-style-reports.log)
         do
-          type=$(echo $line | grep -o -E 'MAJOR|MINOR|INFO')
-          file_name=$(echo $line | cut -d ':' -f1)
-          line_of_the_file=$(echo $line | cut -d ':' -f2)
-          indent=$(echo $line | cut -d ':' -f4)
-          echo "::error title=$type coding style error: $file_name#L$line_of_the_file::$indent"
+          size=$(echo $line | grep -o -E 'MAJOR|MINOR|INFO')
+          src=$(echo $line | cut -d ':' -f1)
+          linefile=$(echo $line | cut -d ':' -f2)
+          type=$(echo $line | cut -d ':' -f4)
+          echo "::error title=$size coding style error,file=$src,line=$linefile::$type"
         done
         exit 1
 
