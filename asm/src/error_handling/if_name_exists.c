@@ -21,6 +21,7 @@ int if_name_exists_bis(char **tab_bis)
         write(2, "The name is too long.\n", 22);
         return 1;
     }
+    return 0;
 }
 
 int if_name_exists(char **tab)
