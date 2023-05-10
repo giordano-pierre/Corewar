@@ -42,7 +42,7 @@ char **add_line(char **array, char *line)
     return new;
 }
 
-int my_arraylen (char **array)
+int my_arraylen(char **array)
 {
     int row = 0;
     for (int i = 0; array[i] != NULL; i++)
