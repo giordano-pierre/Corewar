@@ -35,40 +35,50 @@ char *name_file_point_core(char *file_name)
 
 int inverse_magic(int i)
 {
+    int new = ((i & 0xff) << 24 | (i & 0xff00) << 8 |
+    (i & 0xff0000) >> 8 | ((i >> 24) & 0xff));
 
-    return (i & 0xff) << 24 | (i & 0xff00) << 8
-    | (i & 0xff0000) >> 8 | ((i >> 24) & 0xff);
+    return new;
 }
 
-header_t *make_header(char **file)
+header_t make_header(char **file)
 {
-    header_t *header = malloc(sizeof(header_t));
+    header_t header = {0};
     char **name = my_str_to_word_array(file[0]);
     char **my_comment = my_str_to_word_array(file[1]);
     int ind = 0;
 
-    header->magic = inverse_magic(COREWAR_EXEC_MAGIC);
+    header.magic = inverse_magic(COREWAR_EXEC_MAGIC);
     for (int i = 1; name[1][i + 1] != '\0'; i++, ind++)
-        header->prog_name[ind] = name[1][i];
-    header->prog_name[ind] = '\0';
+        header.prog_name[ind] = name[1][i];
+    header.prog_name[ind] = '\0';
+    header.prog_name[PROG_NAME_LENGTH - 1] = '\0';
     ind = 0;
     for (int j = 1; my_comment[1][j + 1] != '\0'; j++, ind++)
-        header->comment[ind] = my_comment[1][j];
-    header->comment[ind] = '\0';
-    header->prog_size = 0;
+        header.comment[ind] = my_comment[1][j];
+    header.comment[ind] = '\0';
+    header.prog_name[COMMENT_LENGTH - 1] = '\0';
+    header.prog_size = 0;
     free_array(name);
     free_array(my_comment);
     return header;
 }
 
-void my_asm(char **file, char *filepath)
+void make_asm(char **file, char *filepath)
 {
-    header_t *header = make_header(file);
+    header_t header = make_header(file);
     char *new_name = name_file_point_core(filepath);
     FILE *fd = fopen(new_name, "w");
+    instruct_t **info = get_info(file);
+    label_t **labels = create_label(info);
+    int size = my_structlen(info);
 
-    fwrite(header, sizeof(struct header_s), 1, fd);
+    header.prog_size = inverse_magic(size);
+    fwrite(&header, sizeof(struct header_s), 1, fd);
+    fill_label(info, labels);
+    print_all_code(info, fd);
     fclose(fd);
-    free(header);
+    free_inst(info);
+    free_label(labels);
     free(new_name);
 }
