@@ -46,16 +46,3 @@ double signe_float (double nb, int *taille)
     }
     return (nb);
 }
-
-int my_compute_power_rec(int nb, int p)
-{
-    int res;
-    if (p < 0){
-        return (0);
-    } else if (p > 0){
-        res = nb * my_compute_power_rec(nb, p - 1);
-        return (res);
-    } else {
-        return (1);
-    }
-}
