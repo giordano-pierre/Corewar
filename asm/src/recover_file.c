@@ -36,6 +36,7 @@ int verif_file(char *filename, FILE *fd)
         return -1;
     }
     if (have_file_point_s(filename) == -1) {
+        fclose(fd);
         print_h();
         return -1;
     }
