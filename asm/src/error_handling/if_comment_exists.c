@@ -42,9 +42,9 @@ int if_comment_exists(char **tab)
             return 1;
         }
     }
-
     if (if_comment_exists_bis(tab_bis) != 0)
         return 1;
 
+    free_array(tab_bis);
     return 0;
 }
