@@ -28,6 +28,8 @@
     int all_error(char **tab);
     int if_name_exists(char **tab);
     int if_comment_exists(char **tab);
+    int recover_instruction(char **tab);
+    int check_instruction(char *str);
 
     // array.c
     char **add_line(char **array, char *line);
