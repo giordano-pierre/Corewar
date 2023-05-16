@@ -43,6 +43,7 @@ int if_name_exists(char **tab)
 
     if (if_name_exists_bis(tab_bis) != 0)
         return 1;
+    free_array(tab_bis);
 
     return 0;
 }
