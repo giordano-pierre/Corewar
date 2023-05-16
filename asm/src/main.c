@@ -24,6 +24,8 @@ int main(int ac, char **av)
         return 0;
     }
     char **file = recup_file(av[1]);
+    if (file = NULL)
+        return 84;
     if (all_error(file) == -1)
         return 84;
     make_asm(file, av[1]);
