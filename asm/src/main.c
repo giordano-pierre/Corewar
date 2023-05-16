@@ -24,17 +24,14 @@ int main(int ac, char **av)
         return 0;
     }
     char **file = recup_file(av[1]);
-    // if_name_exists(file);
-    // if_comment_exists(file);
-    if (all_error(file) == -1)
-        return 84;
     // if (bad_enter(file))
     //     return 84;
+    if (all_error(file) == -1)
+        return 84;
     // asm_main(file, av[1]);
     if (file != NULL) {
-        for (size_t i = 0; file[i] != NULL; i++) {
+        for (size_t i = 0; file[i] != NULL; i++)
             free(file[i]);
-        }
         free(file);
     }
     return 0;
