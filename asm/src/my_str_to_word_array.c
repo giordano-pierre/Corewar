@@ -25,7 +25,7 @@ int count_char(char const *str, int i)
             count++;
         count++;
     } else {
-        while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'
+        while (str[i] != ',' && str[i] != ' ' && str[i] != '\t' && str[i] != '\n'
                 && str[i] != '\0' && str[i] != COMMENT_CHAR) {
             count++;
             i++;
@@ -46,14 +46,15 @@ int count_word (char const *str)
     int nb_word = 0;
     int nb_char = my_strlen (str);
     for (int i = 0; i < nb_char; i++){
-        while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
+        while (str[i] == ',' || str[i] == ' ' ||
+        str[i] == '\n' || str[i] == '\t')
             i++;
         if (str[i] == '"' && have_second_quote(str, i) == 0)
             skip_quote(str, &i);
-        if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t'
+        if (str[i] != ',' && str[i] != ' ' && str[i] != '\n' && str[i] != '\t'
             && str[i] != '\0' && str[i] != COMMENT_CHAR)
             nb_word++;
-        while (str[i] != ' ' && str[i] != '\n' && str[i] != '\t'
+        while (str[i] != ',' && str[i] != ' ' && str[i] != '\n' && str[i] != '\t'
             && str[i] != '\0' && str[i] != COMMENT_CHAR)
             i++;
     }
@@ -68,7 +69,8 @@ char **my_str_to_word_array(char const *str)
     char **tab = malloc (sizeof(char *) * (nb_word + 1));
 
     for (int i = 0; i < nb_word; i++){
-        while (str[ind] == ' ' || str[ind] == '\t' || str[ind] == '\n') {
+        while (str[ind] == ',' || str[ind] == ' ' ||
+        str[ind] == '\t' || str[ind] == '\n') {
             ind++;
         }
         n = count_char(str, ind);
