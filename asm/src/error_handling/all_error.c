@@ -15,5 +15,9 @@ int all_error(char **tab)
     if (if_comment_exists(tab) != 0) {
         return -1;
     }
+    if (recover_instruction(tab) != 0) {
+        write(2, "Wrong instruction in the file.\n", 31);
+        return -1;
+    }
     return 0;
 }
