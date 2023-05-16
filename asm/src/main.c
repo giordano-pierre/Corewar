@@ -13,7 +13,7 @@ void print_h(void)
     my_printf("executable in the Virtual Machine.\n");
 }
 
-int main(int ac,char **av)
+int main(int ac, char **av)
 {
     if (ac != 2) {
         write(2, "asm: Bad number of arguments.\n", 30);
@@ -24,7 +24,7 @@ int main(int ac,char **av)
         return 0;
     }
     char **file = recup_file(av[1]);
-    if (file == NULL)
+    if (all_error(file) == -1)
         return 84;
     make_asm(file, av[1]);
     free_array(file);

@@ -11,6 +11,7 @@
 #include "../../op.h"
 #include "struct.h"
 #include "../../lib/printf/include/my_printf.h"
+#include "../../op.h"
 
 #ifndef ASM_H_
     #define ASM_H_
@@ -24,6 +25,13 @@
     int file_empty(char **file);
     char **recup_file(char *filename);
     int have_file_point_s(const char *str);
+
+    // error handling
+    int all_error(char **tab);
+    int if_name_exists(char **tab);
+    int if_comment_exists(char **tab);
+    int recover_instruction(char **tab);
+    int check_instruction(char *str);
 
     // array.c
     char **add_line(char **array, char *line);
@@ -93,4 +101,4 @@
     void get_label_code(instruct_t *param, label_t **labels, int line);
     int get_label_line(label_t **labels, char *search);
 
-#endif /* !ASM_H_ */
+#endif /* !GENERATOR_H_ */
