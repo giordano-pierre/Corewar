@@ -32,6 +32,10 @@
     int if_comment_exists(char **tab);
     int recover_instruction(char **tab);
     int check_instruction(char *str);
+    int check_double_point(char *str);
+    int recover_param_number(char **tab);
+    int check_num_param(int num_arg, char *str);
+    int check_instruction_arg(char *str);
 
     // array.c
     char **add_line(char **array, char *line);
