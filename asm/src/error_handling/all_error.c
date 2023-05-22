@@ -19,5 +19,9 @@ int all_error(char **tab)
         write(2, "Wrong instruction in the file.\n", 31);
         return -1;
     }
+    if (recover_param_number(tab) != 0) {
+        write(2, "Wrong number of arguments.\n", 27);
+        return -1;
+    }
     return 0;
 }
