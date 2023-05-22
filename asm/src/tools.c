@@ -36,7 +36,7 @@ int	my_getnbr_ind(char const *str, int indice)
     return (nb * signe);
 }
 
-int my_strlen_hashtag(char const*str)
+int my_strlen_hashtag(char const *str)
 {
     int cmpt = 0;
 

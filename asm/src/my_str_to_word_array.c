@@ -26,8 +26,9 @@ int count_char(char const *str, int i)
             count++;
         count++;
     } else {
-        while (str[i] != ',' && str[i] != ' ' && str[i] != '\t' && str[i] != '\n'
-                && str[i] != '\0' && str[i] != COMMENT_CHAR) {
+        while (str[i] != ',' && str[i] != ' ' && str[i] != '\t'
+            && str[i] != '\n' && str[i] != '\0'
+            && str[i] != COMMENT_CHAR) {
             count++;
             i++;
         }
@@ -58,9 +59,11 @@ int count_word (char const *str)
         if (str[i] != ',' && str[i] != ' ' && str[i] != '\n' && str[i] != '\t'
             && str[i] != '\0' && str[i] != COMMENT_CHAR)
             nb_word++;
-        while (str[i] != ',' && str[i] != ' ' && str[i] != '\n' && str[i] != '\t'
-            && str[i] != '\0' && str[i] != COMMENT_CHAR)
+        while (str[i] != ',' && str[i] != ' ' && str[i] != '\n'
+            && str[i] != '\t' && str[i] != '\0'
+            && str[i] != COMMENT_CHAR){
             i++;
+        }
     }
     return nb_word;
 }
