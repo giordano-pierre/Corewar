@@ -69,6 +69,7 @@
     // tools.c
     int find_double_point(char *str);
     int	my_getnbr_ind(char const *str, int indice);
+    int my_strlen_hashtag(char const*str);
 
     // index.c
     char **create_no_bin(void);
