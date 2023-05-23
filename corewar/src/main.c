@@ -35,6 +35,7 @@ int bad_enter(char **file)
 
 int main(int ac, char **av)
 {
+    struct stat info;
     if (ac == 2)
         if (my_strcmp(av[1], "-h") == 0) {
             print_h();
@@ -44,15 +45,19 @@ int main(int ac, char **av)
         write(2, "corewar: Bad number of champions.\n", 34);
         return 84;
     }
-    char **file = read_file(av[1]);
-    if (bad_enter(file))
+    char *file = read_file(av[1], &info);
+    if (file == NULL)
         return 84;
-    corewar_main(file, av);
-    if (file != NULL) {
-        for (size_t i = 0; file[i] != NULL; i++) {
-            free(file[i]);
-        }
-        free(file);
+    char *mem = create_mem();
+    print_mem(mem);
+    for (int i = PROG_NAME_LENGTH + COMMENT_LENGTH + 16; i < info.st_size; i++) {
+        if (file[i] < 0)
+            my_printf("%02x ", (256 + file[i]));
+        else
+            my_printf("%02x ", file[i]);
     }
+    write(1, "\n", 1);
+    free(mem);
+    free(file);
     return 0;
 }
