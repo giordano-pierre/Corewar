@@ -6,41 +6,35 @@
 */
 #include "../include/corewar.h"
 
-size_t count_lines(FILE *file)
+int error_file(char const *file_name, struct stat *info)
 {
-    size_t lines_count = 0;
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read;
+    int fd;
 
-    while ((read = getline(&line, &len, file)) != -1) {
-        lines_count++;
+    if (stat(file_name, info) == -1) {
+        write(2, "corewar: No such file.\n", 23);
+        return -1;
     }
-    fseek(file, 0, SEEK_SET);
-    free(line);
-    return lines_count;
+    if ((fd = open(file_name, O_RDONLY)) == -1) {
+        write(2, "corewar: Cannot open the file.\n", 31);
+        return -1;
+    }
+    return fd;
 }
 
-char **read_file(const char *file_name)
+char *read_file(const char *file_name, struct stat *info)
 {
-    FILE *file = fopen(file_name, "r");
-    if (file == NULL) {
-        write(2, "corewar: Bad file\n", 18);
+    int fd = error_file(file_name, info);
+    char *buffer;
+
+    if (fd == -1)
         return NULL;
-    }
-    size_t lines_count = count_lines(file);
-    char **final_file = malloc((lines_count + 1) * sizeof(char *));
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read;
-    size_t i = 0;
-    while ((read = getline(&line, &len, file)) != -1) {
-        final_file[i] = malloc((read + 1) * sizeof(char));
-        my_strcpy(final_file[i], line);
-        i++;
-    }
-    fclose(file);
-    free(line);
-    final_file[i] = NULL;
-    return final_file;
+    buffer = malloc(sizeof(char) * (info->st_size + 1));
+    if (read(fd, buffer, info->st_size) == -1) {
+        free(buffer);
+        buffer = NULL;
+        write(2, "corewar: Bad file.\n", 19);
+    } else
+        buffer[info->st_size] = '\0';
+    close(fd);
+    return buffer;
 }
