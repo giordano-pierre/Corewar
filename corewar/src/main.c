@@ -49,14 +49,6 @@ int main(int ac, char **av)
     if (file == NULL)
         return 84;
     char *mem = create_mem();
-    print_mem(mem);
-    for (int i = PROG_NAME_LENGTH + COMMENT_LENGTH + 16; i < info.st_size; i++) {
-        if (file[i] < 0)
-            my_printf("%02x ", (256 + file[i]));
-        else
-            my_printf("%02x ", file[i]);
-    }
-    write(1, "\n", 1);
     free(mem);
     free(file);
     return 0;
