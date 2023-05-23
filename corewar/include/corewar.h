@@ -4,15 +4,16 @@
 ** File description:
 ** corewar
 */
-#include <sys/stat.h>
 #include <sys/types.h>
 #include <stdio.h>
+#include <stdint.h>
+
+#include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
 #include "../../lib/printf/include/my_printf.h"
-#include <stdint.h>
+#include "../../op.h"
 
 #ifndef SOLVER_H_
     #define SOLVER_H_
@@ -31,10 +32,14 @@
     void print_array(char **array);
 
     // array.c;
-    size_t count_lines(FILE *file);
-    char **read_file(const char *file_name);
-
+    int error_file(char const *file_name, struct stat *info);
+    char *read_file(const char *file_name, struct stat *info);
     // corewar.c
     void corewar_main(char **file, char **av);
+
+    // mem.c
+    char *create_mem(void);
+    void print_good(int i, int *line);
+    void print_mem(char *mem);
 
 #endif /* !SOLVER_H_ */
