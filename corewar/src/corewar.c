@@ -36,7 +36,7 @@ int have_file_point_cor(char *str)
     if (str_len < ext_len) {
         return 0;
     }
-    return strcmp(str + str_len - ext_len, extension) == 0;
+    return my_strcmp(str + str_len - ext_len, extension) == 0;
 }
 
 void corewar_main(char **file, char **av)
