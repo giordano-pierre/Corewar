@@ -13,7 +13,7 @@ int check_instruction_arg(char *str)
     for (int i = 0; i < len; i++) {
         op_t tab_bis = op_tab[i];
         if (my_strcmp(str, tab_bis.mnemonique) == 0) {
-            return tab_bis.nbr_args;
+            return tab_bis.nbr_args; 
         }
     }
     return 0;
