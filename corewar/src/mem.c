@@ -35,8 +35,7 @@ void print_mem(char *mem)
 {
     int line = 0;
 
-    for (int i = 0; i < MEM_SIZE; i++)
-    {
+    for (int i = 0; i < MEM_SIZE; i++) {
         print_good(i, &line);
         my_printf("%02x", (int)mem[i]);
     }
