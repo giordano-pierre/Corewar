@@ -5,6 +5,7 @@ on:
     branches-ignore:
       - 'ga-ignore-*'
       - 'error_handling'
+      - 'flags_gestion'
   pull_request:
     branches-ignore:
       - "ga-ignore-*"
