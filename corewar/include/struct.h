@@ -11,7 +11,7 @@
     #define STRUCT_H_
 
     typedef struct corewar {
-        char MEM[MEM_SIZE];
+        char *mem;
         int nbr_live;
         int cycle_to_die;
         int dump;
