@@ -18,15 +18,14 @@
     } corewar_t;
 
     typedef struct champion {
+        char *file;
         char *name;
         char *comment;
         char *code;
         int nb_prog;
         int adress;
+        char *last_live;
         int pc;
     } champ_t;
-    typedef struct warriors {
-        champ_t *champ;
-    } warriors_t;
 
 #endif /* !STRUCT_H_ */

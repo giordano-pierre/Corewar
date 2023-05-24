@@ -42,4 +42,8 @@
 
     // flags handling
     int recup_flags(char **av, corewar_t *corewar, warriors_t *champ);
+
+    // add_tab.c
+    champ_t **add_tab(champ_t **warriors, int adss, char *file, int nb_p);
+
 #endif /* !SOLVER_H_ */
