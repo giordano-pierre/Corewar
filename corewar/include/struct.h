@@ -18,6 +18,7 @@
     } corewar_t;
 
     typedef struct champion {
+        char *file;
         char *name;
         char *comment;
         char *code;

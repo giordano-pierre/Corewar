@@ -33,11 +33,32 @@ int bad_enter(char **file)
     return 0;
 }
 
+champ_t **ajouter_tab(champ_t **warriors, ...)
+{
+    int taille = 0;
+    while (warriors[taille] != NULL) {
+        taille++;
+    }
+    char** nouveau_warriors = malloc((taille + 2) * sizeof(char*));
+    for (int i = 0; i < ligne; i++) {
+        nouveau_warriors[i] = warriors[i];
+    }
+    nouveau_warriors[ligne] = chaine;
+    for (int i = ligne; i < taille; i++) {
+        nouveau_warriors[i + 1] = warriors[i];
+    }
+    nouveau_warriors[taille + 1] = NULL;
+    free(warriors);
+    return nouveau_warriors;
+}
+
+
 int main(int ac, char **av)
 {
     struct stat info;
-    warriors_t *warriors = malloc(sizeof(warriors_t));
-    champ_t *champ = malloc(sizeof(champ_t) * 10);
+    corewar_t *base = malloc(sizeof(corewar_t));
+    champ_t **warriors = malloc(sizeof(champ_t *));
+    warriors[0] = NULL;
     if (ac == 2)
         if (my_strcmp(av[1], "-h") == 0) {
             print_h();
