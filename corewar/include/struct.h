@@ -25,5 +25,8 @@
         int adress;
         int pc;
     } champ_t;
+    typedef struct warriors {
+        champ_t *champ;
+    } warriors_t;
 
 #endif /* !STRUCT_H_ */
