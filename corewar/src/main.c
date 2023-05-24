@@ -36,6 +36,8 @@ int bad_enter(char **file)
 int main(int ac, char **av)
 {
     struct stat info;
+    warriors_t *warriors = malloc(sizeof(warriors_t));
+    champ_t *champ = malloc(sizeof(champ_t) * 10);
     if (ac == 2)
         if (my_strcmp(av[1], "-h") == 0) {
             print_h();
@@ -51,5 +53,6 @@ int main(int ac, char **av)
     char *mem = create_mem();
     free(mem);
     free(file);
+    free(champ); free(warriors);
     return 0;
 }
