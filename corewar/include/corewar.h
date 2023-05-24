@@ -43,4 +43,7 @@
     // add_tab.c
     champ_t **add_tab(champ_t **warriors, int adss, char *file, int nb_p);
 
+    // free.c
+    void free_champ(champ_t **warriors);
+
 #endif /* !SOLVER_H_ */
