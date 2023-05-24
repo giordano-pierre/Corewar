@@ -40,4 +40,7 @@
     void print_good(int i, int *line);
     void print_mem(char *mem);
 
+    // add_tab.c
+    champ_t **add_tab(champ_t **warriors, int adss, char *file, int nb_p);
+
 #endif /* !SOLVER_H_ */
