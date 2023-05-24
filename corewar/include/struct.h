@@ -24,6 +24,7 @@
         char *code;
         int nb_prog;
         int adress;
+        char *last_live;
         int pc;
     } champ_t;
 
