@@ -46,4 +46,10 @@
     // free.c
     void free_champ(champ_t **warriors);
 
+    //intructions/memory_value.c
+    int read_memory_value(char *memory, int address, int size);
+
+    //intructions/ld.c
+    void direct_load_fonction(corewar_t *corewar, champ_t *champion);
+
 #endif /* !SOLVER_H_ */
