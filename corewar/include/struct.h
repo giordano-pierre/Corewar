@@ -26,6 +26,7 @@
         int adress;
         char *last_live;
         int pc;
+        int carry;
     } champ_t;
 
 #endif /* !STRUCT_H_ */
