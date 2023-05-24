@@ -14,15 +14,13 @@
 #include <unistd.h>
 #include "../../lib/printf/include/my_printf.h"
 #include "../../op.h"
+#include "struct.h"
 
 #ifndef SOLVER_H_
     #define SOLVER_H_
 
     #define CHAMPION_NAME_OFFSET 4
     #define CHAMPION_NAME_LENGTH 128
-
-    typedef struct corewar {
-    } corewar_t;
 
     // main.c
     void print_h(void);
