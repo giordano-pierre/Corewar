@@ -8,8 +8,8 @@
 
 champ_t **create_champ(champ_t **warriors)
 {
-    warriors = add_tab(warriors, 0, "abel.cor", 1);
-    warriors = add_tab(warriors, (MEM_SIZE / 2), "bill.cor", 2);
+    warriors = add_tab(warriors, (MEM_SIZE / 2), "abel.cor", 1);
+    warriors = add_tab(warriors, 0, "bill.cor", 2);
     return warriors;
 }
 

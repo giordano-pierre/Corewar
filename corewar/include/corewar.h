@@ -64,6 +64,7 @@
 
     // struct.c
     corewar_t *create_base(void);
+    void print_reg(int reg[REG_NUMBER]);
 
     // my_corewar.c
     int load_champ(unsigned char *mem, champ_t *champ);

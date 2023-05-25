@@ -25,4 +25,5 @@ void print_reg(int reg[REG_NUMBER])
     for (int i = 0; i < REG_NUMBER; i++) {
         my_printf("%d : ", reg[i]);
     }
+    my_printf("\n");
 }
