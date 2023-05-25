@@ -13,10 +13,10 @@ int my_corewar(corewar_t *corewar)
         write(2, "corewar: Champions are superposed.\n", 35);
         return -1;
     }
-    corewar->warriors[0]->pc = 10;
-    my_printf("%02x\n", corewar->mem[corewar->warriors[0]->pc]);
-    direct_load_fonction(corewar, corewar->warriors[0]);
-    print_reg(corewar->warriors[0]->reg);
-    my_printf("%d\n", corewar->warriors[0]->pc);
+    // corewar->warriors[0]->pc = 10;
+    // my_printf("%02x\n", corewar->mem[corewar->warriors[0]->pc]);
+    // direct_load_fonction(corewar, corewar->warriors[0]);
+    // print_reg(corewar->warriors[0]->reg);
+    // my_printf("%d\n", corewar->warriors[0]->pc);
     return 0;
 }

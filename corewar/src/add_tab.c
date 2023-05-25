@@ -17,6 +17,7 @@ void add_value(champ_t *champion)
     champion->name = NULL;
     champion->pc = 0;
     champion->size = 0;
+    champion->is_alive = 0;
 }
 
 champ_t **add_tab(champ_t **warriors, int adress, char *file, int nb_p)

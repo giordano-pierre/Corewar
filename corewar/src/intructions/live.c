@@ -11,6 +11,7 @@ void print_live(champ_t *champion, corewar_t *corewar)
 {
     my_printf("The player %d",champion->nb_prog);
     my_printf("(%s) is alive\n", champion->name);
+    champion->is_alive = 1;
     if (corewar->last_live == NULL) {
         corewar->last_live = my_strdup(champion->name);
     } else {

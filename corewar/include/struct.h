@@ -21,6 +21,7 @@
         int pc;
         int carry;
         int reg[REG_NUMBER];
+        int is_alive;
     } champ_t;
 
     typedef struct corewar {
@@ -33,3 +34,6 @@
     } corewar_t;
 
 #endif /* !STRUCT_H_ */
+
+//      144
+//      "10 01 00 00"
