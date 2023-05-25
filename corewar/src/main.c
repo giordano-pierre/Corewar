@@ -35,7 +35,7 @@ int bad_enter(char **file)
 
 int main(int ac, char **av)
 {
-    struct stat info;
+    char *mem = create_mem();
     corewar_t *base = malloc(sizeof(corewar_t));
     champ_t **warriors = malloc(sizeof(champ_t *));
     warriors[0] = NULL;
@@ -48,11 +48,11 @@ int main(int ac, char **av)
         write(2, "corewar: Bad number of champions.\n", 34);
         return 84;
     }
-    char *file = read_file(av[1], &info);
-    if (file == NULL)
-        return 84;
-    char *mem = create_mem();
-    free(mem); free(file);
-    free(base); free(warriors);
+    warriors = create_champ(warriors);
+    fill_champ(warriors);
+    print_champ(warriors);
+    free(mem);
+    free(base);
+    free_champ(warriors);
     return 0;
 }

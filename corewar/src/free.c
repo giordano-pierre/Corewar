@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2023
-** Corewar
+** B-CPE-200-LYN-2-1-corewar-pierre.giordano
 ** File description:
 ** free
 */
@@ -17,7 +17,19 @@ void free_champ(champ_t **warriors)
             free(warriors[i]->name);
         if (warriors[i]->comment)
             free(warriors[i]->comment);
+        if (warriors[i]->code)
+            free(warriors[i]->code);
         free(warriors[i]);
     }
     free(warriors);
+}
+
+void free_array(char **array)
+{
+    if (array == NULL)
+        return;
+    for (int i = 0; array[i] != NULL; i++) {
+        free(array[i]);
+    }
+    free(array);
 }

@@ -14,6 +14,10 @@ int error_file(char const *file_name, struct stat *info)
         write(2, "corewar: No such file.\n", 23);
         return -1;
     }
+    if (have_file_point_cor(file_name) != 0) {
+        print_h();
+        return -1;
+    }
     if ((fd = open(file_name, O_RDONLY)) == -1) {
         write(2, "corewar: Cannot open the file.\n", 31);
         return -1;
