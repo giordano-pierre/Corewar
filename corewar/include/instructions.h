@@ -20,6 +20,7 @@
     void indirect_load_fonction(corewar_t *corewar, champ_t *champion);
     //live.c
     int live_fonction(champ_t *champion, corewar_t *corewar);
+    int get_adrr(champ_t *champion);
     //update_register.c
     void update_register(int reg_num, int value, champ_t *champion);
 
