@@ -28,29 +28,29 @@ int dump_flag(char **av, corewar_t *corewar, int i)
     return 0;
 }
 
-int prog_number_flag(char **av, champ_t **warriors, int j, int i)
+int prog_number_flag(char **av, int i)
 {
     int nb_prog = 0;
     if (my_strcmp(av[i], "-n") == 0) {
         if (av[i + 1] != NULL) {
             nb_prog = my_getnbr(av[i + 1]);
-            warriors[j]->nb_prog = nb_prog;
-            return warriors[j]->nb_prog;
+            return nb_prog;
             // printf("pro : %d\n", warriors[j]->nb_prog);
         }
     }
     return 0;
 }
 
-int load_adress_flag(char **av, champ_t **warriors, int i, int j)
+int load_adress_flag(char **av, int i)
 {
-    int adress = warriors[j]->adress;
+    int adress = 0;
     if (my_strcmp(av[i], "-a") == 0) {
         if (av[i + 1] != NULL) {
             adress = my_getnbr(av[i + 1]);
+            return adress;
         }
     }
-    return adress;
+    return 0;
 }
 
 int check_file(char **av)
@@ -70,17 +70,13 @@ int recup_flags(char **av, corewar_t *corewar, champ_t **warriors)
 {
     corewar->dump = -1;
     int j = 0;
-    char *file;
-    // printf("okkkk\n");
     for (int i = 1; av[i] != NULL; i++, j++) {
         if (dump_flag(av, corewar, i) != 0)
             return 1;
-        int prog_nb = prog_number_flag(av, warriors, j, i);
-        int load_adress = load_adress_flag(av, warriors, i, j);
+        int prog_nb = prog_number_flag(av, i);
+        int load_adress = load_adress_flag(av, i);
         if (check_file(av) != 0) {
-            warriors[j]->file = read_file(av[i]);
-            file = my_strdup(warriors[j]->file);
-            add_tab(warriors, load_adress, file, prog_nb);
+            warriors = add_tab(warriors, load_adress, av[i], prog_nb);
         }
     }
     return 0;
