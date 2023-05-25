@@ -23,7 +23,7 @@
     } champ_t;
 
     typedef struct corewar {
-        char *mem;
+        unsigned char *mem;
         int nbr_live;
         int cycle_to_die;
         char *last_live;
