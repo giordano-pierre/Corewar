@@ -32,4 +32,12 @@
         champ_t **warriors;
     } corewar_t;
 
+    typedef struct argument_s {
+        unsigned char *memory;
+        int address;
+        int arg_type;
+        int *out_address;
+        champ_t *champion;
+    } argument_t;
+
 #endif /* !STRUCT_H_ */
