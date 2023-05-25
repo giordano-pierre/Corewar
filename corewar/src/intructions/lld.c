@@ -10,17 +10,21 @@ void direct_long_load_fonction(corewar_t *corewar, champ_t *champion)
 {
     int value;
     int reg_num;
-    int encoding = (unsigned char)corewar->mem[champion->pc + 1];
+    int arg_type = (unsigned char)corewar->mem[(champion->pc + 1) % MEM_SIZE];
 
-    if (encoding == T_DIR) {
-        value = read_memory_value(corewar->mem, champion->pc + 2, DIR_SIZE);
-    } else if (encoding == T_IND) {
+    if (arg_type == T_DIR) {
+        value = read_memory_value(corewar->mem,
+            (champion->pc + 2) % MEM_SIZE, DIR_SIZE);
+        reg_num = (unsigned char)corewar->mem[(champion->pc + 6) % MEM_SIZE];
+        champion->pc += 7;
+    } else if (arg_type == T_IND) {
         int address = read_memory_value(corewar->mem,
-            champion->pc + 2, IND_SIZE);
-        value = read_memory_value(corewar->mem, address, DIR_SIZE);
+            (champion->pc + 2) % MEM_SIZE, IND_SIZE);
+        value = read_memory_value(corewar->mem,
+            (champion->pc + address) % MEM_SIZE, REG_SIZE);
+        reg_num = (unsigned char)corewar->mem[(champion->pc + 2 + IND_SIZE) %
+            MEM_SIZE];
+        champion->pc += 3 + IND_SIZE;
     }
-    reg_num = (unsigned char)corewar->mem[champion->pc + 2 +
-        encoding == T_DIR ? DIR_SIZE : IND_SIZE];
     update_register(reg_num, value, champion);
-    champion->pc += 2 + encoding == T_DIR ? DIR_SIZE : IND_SIZE + 1;
 }
