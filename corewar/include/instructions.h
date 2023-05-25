@@ -20,6 +20,10 @@
     //read_register.c
     int read_register(char *code, int reg_num);
 
+    //write_memory_value.c
+    void write_memory_value(unsigned char *memory, int address,
+        int size, int value);
+
     //live.c
     int live_fonction(champ_t *champion, corewar_t *corewar);
     int get_adrr(champ_t *champion);
