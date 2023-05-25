@@ -5,7 +5,6 @@
 ** update_register
 */
 #include "../../include/corewar.h"
-#include "../../include/struct.h"
 
 void update_register(int reg_num, int value, champ_t *champion)
 {

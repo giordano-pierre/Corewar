@@ -5,7 +5,6 @@
 ** ld
 */
 #include "../../include/corewar.h"
-#include "../../include/struct.h"
 
 void direct_load_fonction(corewar_t *corewar, champ_t *champion)
 {
