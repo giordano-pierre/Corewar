@@ -41,8 +41,8 @@
     unsigned char *create_mem(void);
     void print_good(int i, int *line);
     void print_mem(unsigned char *mem);
-    int my_corewar(corewar_t *corewar);
     int fill_mem(unsigned char *mem, champ_t **warriors);
+    int load_champ(unsigned char *mem, champ_t *champ);
 
     // add_tab.c
     champ_t **add_tab(champ_t **warriors, int adss, char *file, int nb_p);
@@ -67,6 +67,6 @@
     void print_reg(int reg[REG_NUMBER]);
 
     // my_corewar.c
-    int load_champ(unsigned char *mem, champ_t *champ);
+    int my_corewar(corewar_t *corewar);
 
 #endif /* !SOLVER_H_ */

@@ -48,6 +48,8 @@ int main(int ac, char **av)
     fill_champ(corewar->warriors);
     if (my_corewar(corewar) == -1)
         err = 84;
+    else
+        err = 0;
     free_corewar(corewar);
     return err;
 }
