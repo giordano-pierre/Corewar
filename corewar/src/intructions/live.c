@@ -30,7 +30,7 @@ int get_adrr(champ_t *champion)
     return adrr;
 }
 
-int live(champ_t *champion, corewar_t *corewar)
+int live_fonction(champ_t *champion, corewar_t *corewar)
 {
     champion->adress = get_adrr(champion);
     print_live(champion, corewar);
