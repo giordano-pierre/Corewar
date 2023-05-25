@@ -28,10 +28,12 @@
     // recover_file.c;
     void free_array(char **array);
     void print_array(char **array);
+    int fill_champ(champ_t **warriors);
 
     // array.c;
     int error_file(char const *file_name, struct stat *info);
-    char *read_file(const char *file_name, struct stat *info);
+    char *read_file(const char *file_name);
+
     // corewar.c
     void corewar_main(char **file, char **av);
 

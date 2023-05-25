@@ -13,6 +13,10 @@ void free_champ(champ_t **warriors)
     for (int i = 0; warriors[i] != NULL; i++) {
         if (warriors[i]->file)
             free(warriors[i]->file);
+        if (warriors[i]->name)
+            free(warriors[i]->name);
+        if (warriors[i]->comment)
+            free(warriors[i]->comment);
         free(warriors[i]);
     }
     free(warriors);

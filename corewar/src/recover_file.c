@@ -21,20 +21,21 @@ int error_file(char const *file_name, struct stat *info)
     return fd;
 }
 
-char *read_file(const char *file_name, struct stat *info)
+char *read_file(const char *file_name)
 {
-    int fd = error_file(file_name, info);
+    struct stat info;
+    int fd = error_file(file_name, &info);
     char *buffer;
 
     if (fd == -1)
         return NULL;
-    buffer = malloc(sizeof(char) * (info->st_size + 1));
-    if (read(fd, buffer, info->st_size) == -1) {
+    buffer = malloc(sizeof(char) * (info.st_size + 1));
+    if (read(fd, buffer, info.st_size) == -1) {
         free(buffer);
         buffer = NULL;
         write(2, "corewar: Bad file.\n", 19);
     } else
-        buffer[info->st_size] = '\0';
+        buffer[info.st_size] = '\0';
     close(fd);
     return buffer;
 }
