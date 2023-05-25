@@ -8,5 +8,6 @@
 
 void indirect_load_fonction(corewar_t *corewar, champ_t *champion)
 {
-
+    (void)corewar;
+    (void)champion;
 }
