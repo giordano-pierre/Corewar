@@ -48,7 +48,7 @@
     // free.c
     void free_champ(champ_t **warriors);
     void free_array(char **array);
-    void free_base(corewar_t *base);
+    void free_corewar(corewar_t *corwar);
 
     // extract_data.c
     char *extract_name(char *file);

@@ -36,18 +36,24 @@ int verif_arg(int ac, char **av)
     return -1;
 }
 
+void my_corewar(corewar_t *corwar)
+{
+    
+}
+
 int main(int ac, char **av)
 {
-    corewar_t *base = NULL;
+    corewar_t *corwar = NULL;
     int err;
 
     if ((err = verif_arg(ac, av)) != -1)
         return err;
-    base = create_base();
-    base->warriors = create_champ(base->warriors);
-    fill_champ(base->warriors);
-    print_champ(base->warriors);
-    free_base(base);
+    corwar = create_base();
+    corwar->warriors = create_champ(corwar->warriors);
+    fill_champ(corwar->warriors);
+    my_corewar(corwar);
+    print_champ(corwar->warriors);
+    free_corewar(corwar);
     return 0;
 }
     // function Patoche a la place de create_champ()

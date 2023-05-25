@@ -24,17 +24,17 @@ void free_champ(champ_t **warriors)
     free(warriors);
 }
 
-void free_base(corewar_t *base)
+void free_corewar(corewar_t *corwar)
 {
-    if (base == NULL)
+    if (corwar == NULL)
         return;
-    if (base->mem)
-        free(base->mem);
-    if (base->last_live)
-        free(base->last_live);
-    if (base->warriors)
-        free_champ(base->warriors);
-    free(base);
+    if (corwar->mem)
+        free(corwar->mem);
+    if (corwar->last_live)
+        free(corwar->last_live);
+    if (corwar->warriors)
+        free_champ(corwar->warriors);
+    free(corwar);
 }
 
 void free_array(char **array)

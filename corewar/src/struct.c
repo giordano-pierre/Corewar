@@ -8,14 +8,14 @@
 
 corewar_t *create_base(void)
 {
-    corewar_t *base = malloc(sizeof(corewar_t));
+    corewar_t *corwar = malloc(sizeof(corewar_t));
 
-    base->cycle_to_die = CYCLE_TO_DIE;
-    base->dump = -1;
-    base->last_live = NULL;
-    base->mem = NULL;
-    base->nbr_live = NBR_LIVE;
-    base->warriors = malloc(sizeof(champ_t *));
-    base->warriors[0] = NULL;
-    return base;
+    corwar->cycle_to_die = CYCLE_TO_DIE;
+    corwar->dump = -1;
+    corwar->last_live = NULL;
+    corwar->mem = NULL;
+    corwar->nbr_live = NBR_LIVE;
+    corwar->warriors = malloc(sizeof(champ_t *));
+    corwar->warriors[0] = NULL;
+    return corwar;
 }
