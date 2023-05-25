@@ -47,8 +47,7 @@ int main(int ac, char **av)
     base->warriors = create_champ(base->warriors);
     fill_champ(base->warriors);
     print_champ(base->warriors);
-    free_champ(base->warriors);
-    free(base);
+    free_base(base);
     return 0;
 }
     // function Patoche a la place de create_champ()
