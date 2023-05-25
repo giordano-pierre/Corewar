@@ -36,11 +36,6 @@ int verif_arg(int ac, char **av)
     return -1;
 }
 
-void my_corewar(corewar_t *corwar)
-{
-    
-}
-
 int main(int ac, char **av)
 {
     corewar_t *corwar = NULL;
@@ -51,7 +46,6 @@ int main(int ac, char **av)
     corwar = create_base();
     corwar->warriors = create_champ(corwar->warriors);
     fill_champ(corwar->warriors);
-    my_corewar(corwar);
     print_champ(corwar->warriors);
     free_corewar(corwar);
     return 0;
