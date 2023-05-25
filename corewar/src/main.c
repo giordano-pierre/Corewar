@@ -22,40 +22,32 @@ void print_h(void)
     my_printf(" as possible. The addresses are MEM_SIZE modulo.\n");
 }
 
-int bad_enter(char **file)
+int verif_arg(int ac, char **av)
 {
-    if (file == NULL)
-        return 1;
-    if (file[0] == NULL) {
-        write(2, "corewar: it's not a file !\n", 27);
-        return 1;
-    }
-    return 0;
-}
-
-int main(int ac, char **av)
-{
-    corewar_t *base = malloc(sizeof(corewar_t));
-    champ_t **warriors = malloc(sizeof(champ_t *));
-    warriors[0] = NULL;
     if (ac == 2)
         if (my_strcmp(av[1], "-h") == 0) {
             print_h();
             return 0;
         }
-    // if (ac < 3) {
-    //     write(2, "corewar: Bad number of champions.\n", 34);
-    //     return 84;
-    // }
-    // char *file = read_file(av[1], &info);
-    // if (file == NULL)
-    //     return 84;
-    // char *mem = create_mem();
-    // free(mem); free(file);
-    // if (recup_flags(av, base, warriors) != 0)
-    //     return 84;
-    recup_flags(av, base, warriors);
-        // return 84;
-    free(base); free(warriors);
+    if (ac < 3) {
+        write(2, "corewar: Bad number of champions.\n", 34);
+        return 84;
+    }
+    return -1;
+}
+
+int main(int ac, char **av)
+{
+    corewar_t *base = NULL;
+    int err;
+
+    if ((err = verif_arg(ac, av)) != -1)
+        return err;
+    base = create_base();
+    base->warriors = create_champ(base->warriors);
+    fill_champ(base->warriors);
+    print_champ(base->warriors);
+    free_base(base);
     return 0;
 }
+    // function Patoche a la place de create_champ()

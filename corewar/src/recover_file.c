@@ -6,12 +6,16 @@
 */
 #include "../include/corewar.h"
 
-int error_file(char const *file_name, struct stat *info)
+int error_file(char *file_name, struct stat *info)
 {
     int fd;
 
     if (stat(file_name, info) == -1) {
         write(2, "corewar: No such file.\n", 23);
+        return -1;
+    }
+    if (have_file_point_cor(file_name) != 0) {
+        print_h();
         return -1;
     }
     if ((fd = open(file_name, O_RDONLY)) == -1) {
@@ -21,7 +25,7 @@ int error_file(char const *file_name, struct stat *info)
     return fd;
 }
 
-char *read_file(const char *file_name)
+char *read_file(char *file_name)
 {
     struct stat info;
     int fd = error_file(file_name, &info);

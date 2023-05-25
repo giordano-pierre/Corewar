@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2023
 ** Corewar
 ** File description:
-** ld
+** lld
 */
 #include "../../include/corewar.h"
 
-void direct_load_fonction(corewar_t *corewar, champ_t *champion)
+void direct_long_load_fonction(corewar_t *corewar, champ_t *champion)
 {
     int value;
     int reg_num;
@@ -17,7 +17,6 @@ void direct_load_fonction(corewar_t *corewar, champ_t *champion)
     } else if (encoding == T_IND) {
         int address = read_memory_value(corewar->mem,
             champion->pc + 2, IND_SIZE);
-        address %= IDX_MOD;
         value = read_memory_value(corewar->mem, address, DIR_SIZE);
     }
     reg_num = (unsigned char)corewar->mem[champion->pc + 2 +

@@ -15,6 +15,7 @@
 #include "../../lib/printf/include/my_printf.h"
 #include "../../op.h"
 #include "struct.h"
+#include "instructions.h"
 
 #ifndef SOLVER_H_
     #define SOLVER_H_
@@ -26,16 +27,15 @@
     void print_h(void);
 
     // recover_file.c;
-    void free_array(char **array);
     void print_array(char **array);
     int fill_champ(champ_t **warriors);
 
     // array.c;
-    int error_file(char const *file_name, struct stat *info);
-    char *read_file(const char *file_name);
+    int error_file(char *file_name, struct stat *info);
+    char *read_file(char *file_name);
 
     // corewar.c
-    void corewar_main(char **file, char **av);
+    int have_file_point_cor(char *str);
 
     // mem.c
     char *create_mem(void);
@@ -50,11 +50,20 @@
 
     // free.c
     void free_champ(champ_t **warriors);
+    void free_array(char **array);
+    void free_base(corewar_t *base);
 
-    //intructions/memory_value.c
-    int read_memory_value(char *memory, int address, int size);
+    // extract_data.c
+    char *extract_name(char *file);
+    char *extract_comment(char *file);
+    char *extract_code(char *file, int size);
+    int fill_champ(champ_t **warriors);
 
-    //intructions/ld.c
-    void direct_load_fonction(corewar_t *corewar, champ_t *champion);
+    // champ.c
+    champ_t **create_champ(champ_t **warriors);
+    void print_champ(champ_t **warriors);
+
+    // struct.c
+    corewar_t *create_base(void);
 
 #endif /* !SOLVER_H_ */
