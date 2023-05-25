@@ -20,6 +20,7 @@
         int adress;
         int pc;
         int carry;
+        int reg[REG_NUMBER];
     } champ_t;
 
     typedef struct corewar {
