@@ -8,8 +8,7 @@
 
 void direct_long_load_fonction(corewar_t *corewar, champ_t *champion)
 {
-    int value;
-    int reg_num;
+    int value; int reg_num;
     int encoding_byte = (unsigned char)corewar->mem[(champion->pc +
         1) % MEM_SIZE];
     int arg_type = (encoding_byte >> 6) & 0b11;
