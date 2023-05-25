@@ -36,7 +36,7 @@ char *extract_code(char *file, int size)
     for (int i = 0; i < size; i++) {
         code[i] = file[i + tmp];
     }
-    code[tmp] = '\0';
+    code[size] = '\0';
     return code;
 }
 

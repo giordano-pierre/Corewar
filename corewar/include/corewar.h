@@ -59,4 +59,7 @@
     champ_t **create_champ(champ_t **warriors);
     void print_champ(champ_t **warriors);
 
+    // struct.c
+    corewar_t *create_base(void);
+
 #endif /* !SOLVER_H_ */
