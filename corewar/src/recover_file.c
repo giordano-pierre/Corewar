@@ -6,7 +6,7 @@
 */
 #include "../include/corewar.h"
 
-int error_file(char const *file_name, struct stat *info)
+int error_file(char *file_name, struct stat *info)
 {
     int fd;
 
@@ -25,7 +25,7 @@ int error_file(char const *file_name, struct stat *info)
     return fd;
 }
 
-char *read_file(const char *file_name)
+char *read_file(char *file_name)
 {
     struct stat info;
     int fd = error_file(file_name, &info);

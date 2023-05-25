@@ -30,8 +30,8 @@
     int fill_champ(champ_t **warriors);
 
     // array.c;
-    int error_file(char const *file_name, struct stat *info);
-    char *read_file(const char *file_name);
+    int error_file(char *file_name, struct stat *info);
+    char *read_file(char *file_name);
 
     // corewar.c
     int have_file_point_cor(char *str);

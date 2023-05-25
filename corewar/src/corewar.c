@@ -6,11 +6,11 @@
 */
 #include "../include/corewar.h"
 
-void win_print(char **av)
-{
-    char *champion_name = extract_champion_name(av[1]);
-    my_printf("The player 1(%s) has won.\n", champion_name);
-}
+// void win_print(char **av)
+// {
+//     char *champion_name = extract_champion_name(av[1]);
+//     my_printf("The player 1(%s) has won.\n", champion_name);
+// }
 
 int have_file_point_cor(char *str)
 {
