@@ -31,11 +31,8 @@
     void direct_long_load_fonction(corewar_t *corewar, champ_t *champion);
 
     //ldi.c
+    int read_argument_value(argument_t *arg);
     void indirect_load_fonction(corewar_t *corewar, champ_t *champion);
-    void update_final_var(corewar_t *corewar, champ_t *champion,
-    int value1, int value2);
-    int param_two(corewar_t *corewar, champ_t *champion,
-        int encoding2, int value2);
 
     // lldi.c
     void long_indirect_load_fonction(corewar_t *corewar, champ_t *champion);
