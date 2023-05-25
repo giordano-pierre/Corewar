@@ -6,54 +6,47 @@
 */
 #include "../../include/corewar.h"
 
-void update_final_var(corewar_t *corewar, champ_t *champion,
-    int value1, int value2)
+int read_argument_value(argument_t *arg)
 {
-    int address = (champion->pc + value1 + value2) % MEM_SIZE;
-    int reg_num;
-    int final_value = read_memory_value(corewar->mem, address, REG_SIZE);
+    int value = 0;
 
-    reg_num = (unsigned char)corewar->mem[champion->pc + 6];
-    if (reg_num >= 1 && reg_num <= REG_NUMBER) {
-        int reg_address = (reg_num - 1) * REG_SIZE;
-        for (int i = 0; i < REG_SIZE; i++) {
-            champion->code[reg_address + i] =
-                (final_value >> ((REG_SIZE - 1 - i) * 8)) & 0xFF;
-        }
+    if (arg->arg_type == T_REG) {
+        int reg_num = (unsigned char)arg->memory[arg->address % MEM_SIZE];
+        value = arg->champion->reg[reg_num - 1];
+        *(arg->out_address) = 1;
+    } else if (arg->arg_type == T_DIR) {
+        value = read_memory_value(arg->memory,
+            arg->address % MEM_SIZE, DIR_SIZE);
+        *(arg->out_address) = DIR_SIZE;
+    } if (arg->arg_type == T_IND) {
+        int offset = read_memory_value(arg->memory,
+            arg->address % MEM_SIZE, IND_SIZE);
+        int effective_address = (arg->champion->pc + offset) % MEM_SIZE;
+        value = read_memory_value(arg->memory, effective_address, REG_SIZE);
+        *(arg->out_address) = IND_SIZE;
     }
-    champion->pc += 7;
-}
-
-int param_two(corewar_t *corewar, champ_t *champion, int encoding2, int value2)
-{
-    if (encoding2 == T_DIR) {
-        return value2 = read_memory_value(corewar->mem, champion->pc +
-            4, DIR_SIZE);
-    } else if (encoding2 == T_REG) {
-        return value2 = read_register(champion->code,
-            read_memory_value(corewar->mem, champion->pc + 4, 1));
-    }
-    return 0;
+    return value;
 }
 
 void indirect_load_fonction(corewar_t *corewar, champ_t *champion)
 {
-    int value1 = 0;
-    int value2 = 0;
-    int encoding1 = (unsigned char)corewar->mem[champion->pc + 1];
-    int encoding2 = (unsigned char)corewar->mem[champion->pc + 2];
+    int address;
+    int encod_byte = (unsigned char)corewar->mem[(champion->pc + 1) % MEM_SIZE];
+    int arg1_type = (encod_byte >> 6) & 0b11;
+    int arg2_type = (encod_byte >> 4) & 0b11;
+    int arg3_type = (encod_byte >> 2) & 0b11;
 
-    if (encoding1 == T_DIR)
-        value1 = read_memory_value(corewar->mem, champion->pc + 2, DIR_SIZE);
-    if (encoding1 == T_IND) {
-        int address = read_memory_value(corewar->mem, champion->pc +
-            2, IND_SIZE);
-        address %= IDX_MOD;
-        value1 = read_memory_value(corewar->mem, address, DIR_SIZE);
-    } if (encoding1 == T_REG) {
-        value1 = read_register(champion->code, read_memory_value(corewar->mem,
-            champion->pc + 2, 1));
-    }
-    value2 = param_two(corewar, champion, encoding2, value2);
-    update_final_var(corewar, champion, value1, value2);
+    argument_t arg1 = {corewar->mem, champion->pc + 2, arg1_type,
+        &address, champion};
+    argument_t arg2 = {corewar->mem, champion->pc + 2 + address,
+        arg2_type, &address, champion};
+    argument_t arg3 = {corewar->mem, champion->pc + 2 + address,
+        arg3_type, &address, champion};
+    int val1 = read_argument_value(&arg1);
+    int val2 = read_argument_value(&arg2);
+    int val3 = read_argument_value(&arg3);
+    if (val3 < 1 || val3 > REG_NUMBER) return;
+    address = (champion->pc + ((val1 + val2) % IDX_MOD)) % MEM_SIZE;
+    champion->reg[val3 - 1] = read_memory_value(corewar->mem, address,REG_SIZE);
+    champion->pc += 2 + address;
 }
