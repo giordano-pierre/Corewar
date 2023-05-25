@@ -43,9 +43,7 @@ int main(int ac, char **av)
 
     if ((err = verif_arg(ac, av)) != -1)
         return err;
-    base = malloc(sizeof(corewar_t));
-    base->warriors = malloc(sizeof(champ_t *));
-    base->warriors[0] = NULL;
+    base = create_base();
     base->warriors = create_champ(base->warriors);
     fill_champ(base->warriors);
     print_champ(base->warriors);
