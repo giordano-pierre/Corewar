@@ -15,6 +15,7 @@
 #include "../../lib/printf/include/my_printf.h"
 #include "../../op.h"
 #include "struct.h"
+#include "instructions.h"
 
 #ifndef SOLVER_H_
     #define SOLVER_H_
@@ -47,12 +48,6 @@
     // free.c
     void free_champ(champ_t **warriors);
     void free_array(char **array);
-
-    //intructions/memory_value.c
-    int read_memory_value(char *memory, int address, int size);
-
-    //intructions/ld.c
-    void direct_load_fonction(corewar_t *corewar, champ_t *champion);
 
     // extract_data.c
     char *extract_name(char *file);
