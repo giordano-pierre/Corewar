@@ -19,3 +19,10 @@ corewar_t *create_base(void)
     corewar->warriors[0] = NULL;
     return corewar;
 }
+
+void print_reg(int reg[REG_NUMBER])
+{
+    for (int i = 0; i < REG_NUMBER; i++) {
+        my_printf("%d : ", reg[i]);
+    }
+}
