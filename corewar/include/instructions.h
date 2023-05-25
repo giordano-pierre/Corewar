@@ -11,7 +11,7 @@
 
     //intructions/
     // memory_value.c
-    int read_memory_value(char *memory, int address, int size);
+    int read_memory_value(unsigned char *memory, int address, int size);
     //ld.c
     void direct_load_fonction(corewar_t *corewar, champ_t *champion);
     //lld.c
