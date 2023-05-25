@@ -41,10 +41,10 @@
     void print_mem(char *mem);
 
     // flags handling
-    int recup_flags(char **av, corewar_t *corewar, warriors_t *champ);
+    int recup_flags(char **av, corewar_t *corewar, champ_t **warriors);
 
     // add_tab.c
-    champ_t **add_tab(champ_t **warriors, int adss, char *file, int nb_p);
+    champ_t **add_tab(champ_t **warriors, int adress, char *file, int nb_p);
 
     // free.c
     void free_champ(champ_t **warriors);

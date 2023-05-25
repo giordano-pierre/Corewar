@@ -3,6 +3,12 @@
 ** Corewar
 ** File description:
 ** recup_flags
+** créer des variables temporaires dans lesquelles si il y'a un -n je le
+** stock dans ma structure
+** si il y'a un -a je le stocke dans structure et après l'avoir
+** stocké je le remets à -1 et ensuite je l'écris dans
+** le fichier concernant
+** quand je croise un nom de fichier add_tab
 */
 
 #include "../../include/corewar.h"
@@ -12,44 +18,71 @@ int dump_flag(char **av, corewar_t *corewar, int i)
     if (my_strcmp(av[i], "-dump") == 0) {
         if (av[i + 1] != NULL) {
             corewar->dump = my_getnbr(av[i + 1]);
-            if (corewar->dump == -1)
-                printf("wrong nbr_cycle\n");
-            printf("%d\n", corewar->dump);
+            if (corewar->dump == -1) {
+                write(2, "wrong nbr_cycle.\n", 17);
+                return 1;
+            }
+            // printf("%d\n", corewar->dump);
         }
     }
     return 0;
 }
 
-int prog_number_flag(char **av, warriors_t *warriors, int j, int i)
+int prog_number_flag(char **av, champ_t **warriors, int j, int i)
 {
+    int nb_prog = 0;
     if (my_strcmp(av[i], "-n") == 0) {
         if (av[i + 1] != NULL) {
-            warriors->champ[j].nb_prog = my_getnbr(av[i + 1]);
-            printf("pro : %d\n", warriors->champ[j].nb_prog);
+            nb_prog = my_getnbr(av[i + 1]);
+            warriors[j]->nb_prog = nb_prog;
+            return warriors[j]->nb_prog;
+            // printf("pro : %d\n", warriors[j]->nb_prog);
         }
     }
     return 0;
 }
 
-int load_adress_flag(char **av, warriors_t *warriors, int i, int j)
+int load_adress_flag(char **av, champ_t **warriors, int i, int j)
 {
+    int adress = warriors[j]->adress;
     if (my_strcmp(av[i], "-a") == 0) {
         if (av[i + 1] != NULL) {
-            warriors->champ[j].adress = my_getnbr(av[i + 1]);
-            printf("%d\n", warriors->champ[j].adress);
+            adress = my_getnbr(av[i + 1]);
+        }
+    }
+    return adress;
+}
+
+int check_file(char **av)
+{
+    struct stat pln;
+    for (int i = 1; av[i] != NULL; i++) {
+        if (stat(av[i], &pln) == 0) {
+            if (S_ISREG(pln.st_mode) != 0) {
+                return 1;
+            }
         }
     }
     return 0;
 }
 
-int recup_flags(char **av, corewar_t *corewar, warriors_t *warriors)
+int recup_flags(char **av, corewar_t *corewar, champ_t **warriors)
 {
+    struct stat *info;
     corewar->dump = -1;
     int j = 0;
-    for (int i = 1; av[i] != NULL && j != 10; i++, j++) {
-        dump_flag(av, corewar, i);
-        prog_number_flag(av, warriors, j, i);
-        load_adress_flag(av, warriors, i, j);
+    char *file;
+    // printf("okkkk\n");
+    for (int i = 1; av[i] != NULL; i++, j++) {
+        if (dump_flag(av, corewar, i) != 0)
+            return 1;
+        int prog_nb = prog_number_flag(av, warriors, j, i);
+        int load_adress = load_adress_flag(av, warriors, i, j);
+        if (check_file(av) != 0) {
+            warriors[j]->file = read_file(av[i], info);
+            file = my_strdup(warriors[j]->file);
+            add_tab(warriors, load_adress, file, prog_nb);
+        }
     }
     return 0;
 }
