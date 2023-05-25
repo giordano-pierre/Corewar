@@ -48,5 +48,6 @@ void indirect_load_fonction(corewar_t *corewar, champ_t *champion)
     if (val3 < 1 || val3 > REG_NUMBER) return;
     address = (champion->pc + ((val1 + val2) % IDX_MOD)) % MEM_SIZE;
     champion->reg[val3 - 1] = read_memory_value(corewar->mem, address,REG_SIZE);
+    champion->carry = (champion->reg[val3 - 1] == 0);
     champion->pc += 2 + address;
 }
