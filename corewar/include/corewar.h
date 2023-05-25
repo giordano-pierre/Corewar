@@ -28,10 +28,12 @@
     // recover_file.c;
     void free_array(char **array);
     void print_array(char **array);
+    int fill_champ(champ_t **warriors);
 
     // array.c;
     int error_file(char const *file_name, struct stat *info);
-    char *read_file(const char *file_name, struct stat *info);
+    char *read_file(const char *file_name);
+
     // corewar.c
     void corewar_main(char **file, char **av);
 
@@ -48,5 +50,11 @@
 
     // free.c
     void free_champ(champ_t **warriors);
+
+    //intructions/memory_value.c
+    int read_memory_value(char *memory, int address, int size);
+
+    //intructions/ld.c
+    void direct_load_fonction(corewar_t *corewar, champ_t *champion);
 
 #endif /* !SOLVER_H_ */

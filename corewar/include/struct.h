@@ -22,10 +22,12 @@
         char *name;
         char *comment;
         char *code;
+        int size;
         int nb_prog;
         int adress;
         char *last_live;
         int pc;
+        int carry;
     } champ_t;
 
 #endif /* !STRUCT_H_ */

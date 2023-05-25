@@ -68,7 +68,6 @@ int check_file(char **av)
 
 int recup_flags(char **av, corewar_t *corewar, champ_t **warriors)
 {
-    struct stat *info;
     corewar->dump = -1;
     int j = 0;
     char *file;
@@ -79,7 +78,7 @@ int recup_flags(char **av, corewar_t *corewar, champ_t **warriors)
         int prog_nb = prog_number_flag(av, warriors, j, i);
         int load_adress = load_adress_flag(av, warriors, i, j);
         if (check_file(av) != 0) {
-            warriors[j]->file = read_file(av[i], info);
+            warriors[j]->file = read_file(av[i]);
             file = my_strdup(warriors[j]->file);
             add_tab(warriors, load_adress, file, prog_nb);
         }

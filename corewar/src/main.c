@@ -35,7 +35,6 @@ int bad_enter(char **file)
 
 int main(int ac, char **av)
 {
-    // struct stat info;
     corewar_t *base = malloc(sizeof(corewar_t));
     champ_t **warriors = malloc(sizeof(champ_t *));
     warriors[0] = NULL;
