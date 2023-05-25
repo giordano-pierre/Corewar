@@ -39,16 +39,16 @@ int verif_arg(int ac, char **av)
 int main(int ac, char **av)
 {
     corewar_t *corewar = NULL;
-    int err;
+    int err = 0;
 
     if ((err = verif_arg(ac, av)) != -1)
         return err;
     corewar = create_base();
     corewar->warriors = create_champ(corewar->warriors);
     fill_champ(corewar->warriors);
-    my_corewar(corewar);
-    print_champ(corewar->warriors);
+    if (my_corewar(corewar) == -1)
+        err = 84;
     free_corewar(corewar);
-    return 0;
+    return err;
 }
     // function Patoche a la place de create_champ()
