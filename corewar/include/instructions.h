@@ -25,6 +25,7 @@
         int size, int value);
 
     //add
+    int add_function(champ_t *champion, corewar_t *corewar);
 
     //and
     int and_function(champ_t *champion, corewar_t *corewar);
