@@ -23,10 +23,10 @@ int recup_flags(char **av, corewar_t *corewar)
         if (if_load_adress_exists(av, &i) != 0)
             continue;
         corewar->warriors = add_tab(corewar->warriors, adress, av[i], prog);
-        nb_f += 1; adress = 0;
-        prog = -1;
+        nb_f += 1; adress = 0; prog = -1;
     }
     if (error_file_max(nb_f) != 0)
         return 1;
+    find_prog_number(corewar);
     return 0;
 }
