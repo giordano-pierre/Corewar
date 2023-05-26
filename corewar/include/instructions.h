@@ -24,7 +24,7 @@
     void write_memory_value(unsigned char *memory, int address,
         int size, int value);
 
-    //add
+    //add.c
     void add_function(champ_t *champion, corewar_t *corewar);
 
     //and.c
