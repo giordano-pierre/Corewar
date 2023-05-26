@@ -30,7 +30,7 @@
     //and.c
     void and_function(champ_t *champion, corewar_t *corewar);
 
-    //or
+    //or.c
     void or_function(champ_t *champion, corewar_t *corewar);
 
     //live.c
