@@ -25,7 +25,8 @@ int add_function(champ_t *champion, corewar_t *corewar)
     int thrd_arg = read_argument_value(&arg3);
     int res = frst_arg + secnd_arg;
     if (res == 0) champion->carry = 1;
-    else champion->carry = 0;
+    else
+        champion->carry = 0;
     adress = (champion->pc + ((frst_arg + secnd_arg) % IDX_MOD)) % MEM_SIZE;
     champion->pc += 5 + adress;
 }
