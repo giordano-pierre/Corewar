@@ -43,7 +43,20 @@
     void print_mem(char *mem);
 
     // flags handling
-    int recup_flags(char **av, corewar_t *corewar, champ_t **warriors);
+    int recup_flags(char **av, corewar_t *corewar);
+    int if_load_adress_exists(char **av, int *i);
+    int load_adress_flag(char **av, int i, int load_adress);
+    int prog_number_flag(char **av, int i, int prog_nb);
+    int if_prog_number_exists(char **av, int *i);
+    int dump_flag(char **av, corewar_t *corewar, int *i);
+    int check_file(char **av);
+    int check_file_bis(const char *filename);
+    int if_prog_number_exists_error(char **av, int i);
+    int if_load_adress_exists_error(char **av, int i);
+    int is_number(char *str);
+    int dump_flag_error(char **av, int i);
+    int error_file_max(int nb_file);
+    int flags_error(char **av, int i);
 
     // add_tab.c
     champ_t **add_tab(champ_t **warriors, int adress, char *file, int nb_p);
