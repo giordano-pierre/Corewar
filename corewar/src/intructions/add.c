@@ -7,18 +7,6 @@
 
 #include "../../include/corewar.h"
 
-// int get_arg(champ_t *champion, corewar_t *corewar)
-// {
-//     int type = champion->size;
-//     if (type == T_REG)
-//         return (champion->adress - 1);
-//     if (type == T_IND) // ou 3 à voir
-//         return (get_4bytes_arg(champion, get_adrr(get_2bytes_arg(champion) + champion->adress + champion->pc)));
-//     if (type == T_DIR)
-//         return (get_2bytes_arg(champion));
-//     return (get_4bytes_arg(champion));
-// }
-
 int add_function(champ_t *champion, corewar_t *corewar)
 {
     int adress;
