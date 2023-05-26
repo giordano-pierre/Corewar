@@ -29,13 +29,11 @@
     // recover_file.c;
     void print_array(char **array);
     int fill_champ(champ_t **warriors);
+    int have_file_point_cor(char *str);
 
     // array.c;
     int error_file(char *file_name, struct stat *info);
     unsigned char *read_file(char *file_name);
-
-    // corewar.c
-    int have_file_point_cor(char *str);
 
     // mem.c
     unsigned char *create_mem(void);
