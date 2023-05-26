@@ -15,7 +15,7 @@ int if_load_adress_exists_error(char **av, int i, int adress)
             write(2, "exist or is not the number.\n", 28);
             return 1;
         }
-        if (adress != 0) {
+        if (adress != -1) {
             write(2, "There is more than one -a flag.\n", 32);
             return 1;
         }
