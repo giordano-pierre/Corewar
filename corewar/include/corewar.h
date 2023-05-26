@@ -51,8 +51,6 @@
     int prog_number_flag(char **av, int i, int prog_nb);
     int if_prog_number_exists(char **av, int *i);
     int dump_flag(char **av, corewar_t *corewar, int *i);
-    int check_file(char **av);
-    int check_file_bis(const char *filename);
     int if_prog_number_exists_error(char **av, int i, int prog_nb);
     int if_load_adress_exists_error(char **av, int i, int adress);
     int is_number(char *str);
