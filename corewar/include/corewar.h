@@ -72,15 +72,22 @@
     char *extract_code(unsigned char *file, int size);
     int fill_champ(champ_t **warriors);
 
-    // champ.c
-    champ_t **create_champ(champ_t **warriors);
-    void print_champ(champ_t **warriors);
-
     // struct.c
     corewar_t *create_base(void);
     void print_reg(int reg[REG_NUMBER]);
+    void print_champ(champ_t **warriors);
 
     // my_corewar.c
     int my_corewar(corewar_t *corewar);
+
+    // exec_funct.c
+    int exec_funct_three(corewar_t *corewar, champ_t *champion);
+    int exec_funct_two(corewar_t *corewar, champ_t *champion);
+    void exec_funct(corewar_t *corewar, champ_t *champion);
+
+    //exec_funct_bis.c
+    int exec_funct_six(corewar_t *corewar, champ_t *champion);
+    int exec_funct_five(corewar_t *corewar, champ_t *champion);
+    int exec_funct_four(corewar_t *corewar, champ_t *champion);
 
 #endif /* !SOLVER_H_ */
