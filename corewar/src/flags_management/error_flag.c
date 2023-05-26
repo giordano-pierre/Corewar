@@ -7,13 +7,13 @@
 
 #include "../../include/corewar.h"
 
-int flags_error(char **av, int i)
+int flags_error(char **av, int i, int prog_nb, int adress)
 {
     if (dump_flag_error(av, i) != 0)
         return 1;
-    if (if_prog_number_exists_error(av, i) != 0)
+    if (if_prog_number_exists_error(av, i, prog_nb) != 0)
         return 1;
-    if (if_load_adress_exists_error(av, i) != 0)
+    if (if_load_adress_exists_error(av, i, adress) != 0)
         return 1;
     return 0;
 }

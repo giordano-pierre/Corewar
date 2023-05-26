@@ -43,8 +43,9 @@ char *extract_code(unsigned char *file, int size)
 int fill_champ(champ_t **warriors)
 {
     unsigned char *file;
+    int i = 0;
 
-    for (int i = 0; warriors[i]; i++) {
+    for (; warriors[i]; i++) {
         file = read_file(warriors[i]->file);
         if (file == NULL)
             return -1;
@@ -53,6 +54,10 @@ int fill_champ(champ_t **warriors)
         warriors[i]->size = read_memory_value(file, PROG_NAME_LENGTH + 8, 4);
         warriors[i]->code = extract_code(file, warriors[i]->size);
         free(file);
+    }
+    if (i == 0) {
+        write(2, "corewar: There is no champion.\n", 31);
+        return -1;
     }
     return 0;
 }

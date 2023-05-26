@@ -7,12 +7,16 @@
 
 #include "../../include/corewar.h"
 
-int if_load_adress_exists_error(char **av, int i)
+int if_load_adress_exists_error(char **av, int i, int adress)
 {
     if (my_strcmp(av[i], "-a") == 0) {
         if (av[i + 1] != NULL && is_number(av[i + 1]) != 0) {
             write(2, "The load_adress doesn't ", 24);
             write(2, "exist or is not the number.\n", 28);
+            return 1;
+        }
+        if (adress != 0) {
+            write(2, "There is more than one -a flag.\n", 32);
             return 1;
         }
     }
