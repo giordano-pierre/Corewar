@@ -57,6 +57,7 @@
     int dump_flag_error(char **av, int i);
     int error_file_max(int nb_file);
     int flags_error(char **av, int i, int prog_nb, int adress);
+    void find_prog_number(corewar_t *corewar);
 
     // add_tab.c
     champ_t **add_tab(champ_t **warriors, int adress, char *file, int nb_p);
