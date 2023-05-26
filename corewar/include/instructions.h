@@ -30,6 +30,9 @@
     //and.c
     void and_function(champ_t *champion, corewar_t *corewar);
 
+    //or
+    void or_function(champ_t *champion, corewar_t *corewar);
+
     //live.c
     int live_fonction(champ_t *champion, corewar_t *corewar);
     int get_adrr(champ_t *champion);
