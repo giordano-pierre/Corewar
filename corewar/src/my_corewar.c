@@ -15,14 +15,6 @@ int all_is_dead(champ_t **warriors)
     return 0;
 }
 
-void exec_funct(corewar_t *corewar, champ_t *champion)
-{
-    if (champion->sleep > 0) {
-        champion->sleep--;
-        return;
-    }
-}
-
 void kill_prog(corewar_t *corewar)
 {
     corewar->nb_cycle = 0;
@@ -34,6 +26,10 @@ void kill_prog(corewar_t *corewar)
 
 void print_winner(corewar_t *corewar)
 {
+    if (corewar->last_live == -1) {
+        my_printf("Nobody won the fight !\n");
+        return;
+    }
     for (int i = 0; corewar->warriors[i]; i++) {
         if (corewar->warriors[i]->nb_prog == corewar->last_live) {
             my_printf("The player %d(%s) has won.\n",
@@ -41,7 +37,6 @@ void print_winner(corewar_t *corewar)
             return;
         }
     }
-    my_printf("Nobody won the fight !\n");
 }
 
 int my_corewar(corewar_t *corewar)
@@ -51,13 +46,16 @@ int my_corewar(corewar_t *corewar)
         write(2, "corewar: Champions are superposed.\n", 35);
         return -1;
     }
-    while (all_is_dead(corewar->warriors)) {
+    while (all_is_dead(corewar->warriors) && corewar->dump != 0) {
+        my_printf("%d\n", corewar->nb_cycle);
         if (corewar->nb_cycle > corewar->cycle_to_die)
             kill_prog(corewar);
         for (int i = 0; corewar->warriors[i]; i++) {
             exec_funct(corewar, corewar->warriors[i]);
         }
         corewar->nb_cycle++;
+        if (corewar->dump != -1)
+            corewar->dump--;
     }
     print_winner(corewar);
     return 0;

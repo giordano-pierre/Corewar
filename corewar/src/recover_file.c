@@ -25,6 +25,18 @@ int error_file(char *file_name, struct stat *info)
     return fd;
 }
 
+int have_file_point_cor(char *str)
+{
+    const char *extension = ".cor";
+    size_t ext_len = my_strlen(extension);
+    size_t str_len = my_strlen(str);
+
+    if (str_len < ext_len) {
+        return 0;
+    }
+    return my_strcmp(str + str_len - ext_len, extension);
+}
+
 unsigned char *read_file(char *file_name)
 {
     struct stat info;
