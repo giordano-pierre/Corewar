@@ -30,8 +30,6 @@ void free_corewar(corewar_t *corwar)
         return;
     if (corwar->mem)
         free(corwar->mem);
-    if (corwar->last_live)
-        free(corwar->last_live);
     if (corwar->warriors)
         free_champ(corwar->warriors);
     free(corwar);
