@@ -27,6 +27,9 @@ int get_adrr(champ_t *champion)
 int live_fonction(champ_t *champion, corewar_t *corewar)
 {
     print_live(champion, corewar);
+    corewar->nbr_live++;
+    if (corewar->nbr_live >= NBR_LIVE)
+        corewar->cycle_to_die -= CYCLE_DELTA;
     champion->pc += 5;
     return 0;
 }
