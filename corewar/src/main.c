@@ -46,7 +46,6 @@ int main(int ac, char **av)
     base = create_base();
     if (recup_flags(av, base) != 0)
         return 84;
-    base->warriors = create_champ(base->warriors);
     fill_champ(base->warriors);
     print_champ(base->warriors);
     free_base(base);
