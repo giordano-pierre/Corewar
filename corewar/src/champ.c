@@ -16,7 +16,8 @@ champ_t **create_champ(champ_t **warriors)
 void print_champ(champ_t **warriors)
 {
     for (int i = 0; warriors[i]; i++) {
-        my_printf("%s: %d", warriors[i]->file, warriors[i]->nb_prog);
+        my_printf("%s: %d, %d\n", warriors[i]->file, warriors[i]->nb_prog,
+        warriors[i]->adress);
         my_printf(" ,%s ,%s", warriors[i]->name, warriors[i]->comment);
         my_printf("\t%d\n", warriors[i]->size);
     }
