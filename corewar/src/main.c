@@ -11,12 +11,12 @@ void print_h(void)
     my_printf("USAGE\n./corewar [-dump nbr_cycle] ");
     my_printf("[[-n prog_number] [-a load_address] prog_name] ...\n");
     my_printf("DESCRIPTION\n-dump nbr_cycle dumps the memory ");
-    my_printf("after the nbr_cycle execution (if the round isn’t\n");
+    my_printf("after the nbr_cycle execution (if the round isn't\n");
     my_printf("already over) with the following format: 32 bytes/line\n");
     my_printf("in hexadecimal (A0BCDEFE1DD3...)\n");
-    my_printf("-n prog_number sets the next program’s number.");
+    my_printf("-n prog_number sets the next program's number.");
     my_printf(" By default, the first free number\nin the parameter order\n");
-    my_printf("-a load_address sets the next program’s loading address.");
+    my_printf("-a load_address sets the next program's loading address.");
     my_printf(" When no address is\nspecified, optimize the addresses");
     my_printf(" so that the processes are as far\naway from each other");
     my_printf(" as possible. The addresses are MEM_SIZE modulo.\n");
@@ -44,7 +44,8 @@ int main(int ac, char **av)
     if ((err = verif_arg(ac, av)) != -1)
         return err;
     corewar = create_base();
-    corewar->warriors = create_champ(corewar->warriors);
+    if (recup_flags(av, corewar) != 0)
+        return 84;
     fill_champ(corewar->warriors);
     if (my_corewar(corewar) == -1)
         err = 84;
@@ -53,4 +54,3 @@ int main(int ac, char **av)
     free_corewar(corewar);
     return err;
 }
-    // function Patoche a la place de create_champ()
