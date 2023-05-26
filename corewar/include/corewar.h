@@ -23,7 +23,7 @@
     #define CHAMPION_NAME_OFFSET 4
     #define CHAMPION_NAME_LENGTH 128
 
-    // main.c
+    // main.c;
     void print_h(void);
 
     // recover_file.c;
