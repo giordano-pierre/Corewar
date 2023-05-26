@@ -22,14 +22,17 @@
         int carry;
         int reg[REG_NUMBER];
         int is_alive;
+        int sleep;
     } champ_t;
 
     typedef struct corewar {
         unsigned char *mem;
         int nbr_live;
         int cycle_to_die;
-        char *last_live;
+        int nb_cycle;
+        int last_live;
         int dump;
+        int nb_live;
         champ_t **warriors;
     } corewar_t;
 
