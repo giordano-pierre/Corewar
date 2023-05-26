@@ -25,10 +25,10 @@
         int size, int value);
 
     //add
-    int add_function(champ_t *champion, corewar_t *corewar);
+    void add_function(champ_t *champion, corewar_t *corewar);
 
     //and
-    int and_function(champ_t *champion, corewar_t *corewar);
+    void and_function(champ_t *champion, corewar_t *corewar);
 
     //live.c
     int live_fonction(champ_t *champion, corewar_t *corewar);
