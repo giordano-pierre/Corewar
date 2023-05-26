@@ -24,6 +24,9 @@
     void write_memory_value(unsigned char *memory, int address,
         int size, int value);
 
+    //and
+    int and_function(champ_t *champion, corewar_t *corewar);
+
     //live.c
     int live_fonction(champ_t *champion, corewar_t *corewar);
     int get_adrr(champ_t *champion);
