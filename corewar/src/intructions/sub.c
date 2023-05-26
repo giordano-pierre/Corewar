@@ -7,7 +7,7 @@
 
 #include "../../include/corewar.h"
 
-int sub_funtion(champ_t *champion, corewar_t *corewar)
+void sub_funtion(champ_t *champion, corewar_t *corewar)
 {
     int adress;
     int encod_byt = (unsigned char)corewar->mem[(champion->pc + 1) % MEM_SIZE];
