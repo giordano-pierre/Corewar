@@ -38,16 +38,19 @@ int verif_arg(int ac, char **av)
 
 int main(int ac, char **av)
 {
-    corewar_t *base = NULL;
-    int err;
+    corewar_t *corewar = NULL;
+    int err = 0;
 
     if ((err = verif_arg(ac, av)) != -1)
         return err;
-    base = create_base();
-    if (recup_flags(av, base) != 0)
+    corewar = create_base();
+    if (recup_flags(av, corewar) != 0)
         return 84;
-    fill_champ(base->warriors);
-    print_champ(base->warriors);
-    free_base(base);
-    return 0;
+    fill_champ(corewar->warriors);
+    if (my_corewar(corewar) == -1)
+        err = 84;
+    else
+        err = 0;
+    free_corewar(corewar);
+    return err;
 }

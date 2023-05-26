@@ -11,14 +11,8 @@ void print_live(champ_t *champion, corewar_t *corewar)
 {
     my_printf("The player %d",champion->nb_prog);
     my_printf("(%s) is alive\n", champion->name);
-    if (corewar->last_live == NULL) {
-        corewar->last_live = malloc(sizeof(char) *
-        my_strlen(champion->name) + 1);
-        corewar->last_live = champion->name;
-    } else {
-        free(corewar->last_live);
-        corewar->last_live = my_strdup(champion->name);
-    }
+    champion->is_alive = 1;
+    corewar->last_live = champion->nb_prog;
 }
 
 int get_adrr(champ_t *champion)
@@ -32,7 +26,7 @@ int get_adrr(champ_t *champion)
 
 int live_fonction(champ_t *champion, corewar_t *corewar)
 {
-    champion->adress = get_adrr(champion);
     print_live(champion, corewar);
+    champion->pc += 5;
     return 0;
 }

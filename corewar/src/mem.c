@@ -6,9 +6,9 @@
 */
 #include "../include/corewar.h"
 
-char *create_mem(void)
+unsigned char *create_mem(void)
 {
-    char *mem = malloc(sizeof(char) * MEM_SIZE);
+    unsigned char *mem = malloc(sizeof(char) * MEM_SIZE);
 
     for (int i = 0; i < MEM_SIZE; i++)
         mem[i] = 0;
@@ -31,7 +31,7 @@ void print_good(int i, int *line)
     }
 }
 
-void print_mem(char *mem)
+void print_mem(unsigned char *mem)
 {
     int line = 0;
 
@@ -40,4 +40,25 @@ void print_mem(char *mem)
         my_printf("%02x", (int)mem[i]);
     }
     write(1, "\n", 1);
+}
+
+int load_champ(unsigned char *mem, champ_t *champ)
+{
+    int ind = champ->adress;
+
+    for (int i = 0; i < champ->size; i++, ind++) {
+        if (mem[ind % MEM_SIZE] != 0)
+            return -1;
+        mem[ind % MEM_SIZE] = champ->code[i];
+    }
+    return 0;
+}
+
+int fill_mem(unsigned char *mem, champ_t **warriors)
+{
+    for (int i = 0; warriors[i]; i++) {
+        if (load_champ(mem, warriors[i]) == -1)
+            return -1;
+    }
+    return 0;
 }

@@ -6,6 +6,7 @@ on:
       - 'ga-ignore-*'
       - 'error_handling'
       - 'flags_gestion'
+      - 'nathan_dev'
   pull_request:
     branches-ignore:
       - "ga-ignore-*"

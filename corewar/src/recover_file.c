@@ -25,11 +25,11 @@ int error_file(char *file_name, struct stat *info)
     return fd;
 }
 
-char *read_file(char *file_name)
+unsigned char *read_file(char *file_name)
 {
     struct stat info;
     int fd = error_file(file_name, &info);
-    char *buffer;
+    unsigned char *buffer;
 
     if (fd == -1)
         return NULL;

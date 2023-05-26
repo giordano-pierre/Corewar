@@ -20,15 +20,31 @@
         int adress;
         int pc;
         int carry;
+        int reg[REG_NUMBER];
+        int is_alive;
+        int sleep;
     } champ_t;
 
     typedef struct corewar {
-        char *mem;
+        unsigned char *mem;
         int nbr_live;
         int cycle_to_die;
-        char *last_live;
+        int nb_cycle;
+        int last_live;
         int dump;
+        int nb_live;
         champ_t **warriors;
     } corewar_t;
 
+    typedef struct argument_s {
+        unsigned char *memory;
+        int address;
+        int arg_type;
+        int *out_address;
+        champ_t *champion;
+    } argument_t;
+
 #endif /* !STRUCT_H_ */
+
+//      144
+//      "10 01 00 00"

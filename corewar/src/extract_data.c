@@ -6,7 +6,7 @@
 */
 #include "../include/corewar.h"
 
-char *extract_name(char *file)
+char *extract_name(unsigned char *file)
 {
     char *name = malloc(sizeof(char) * (PROG_NAME_LENGTH + 1));
 
@@ -17,7 +17,7 @@ char *extract_name(char *file)
     return name;
 }
 
-char *extract_comment(char *file)
+char *extract_comment(unsigned char *file)
 {
     char *comment = malloc(sizeof(char) * (COMMENT_LENGTH + 1));
 
@@ -28,7 +28,7 @@ char *extract_comment(char *file)
     return comment;
 }
 
-char *extract_code(char *file, int size)
+char *extract_code(unsigned char *file, int size)
 {
     int tmp = PROG_NAME_LENGTH + COMMENT_LENGTH + 16;
     char *code = malloc(sizeof(char) * (size + 1));
@@ -42,7 +42,7 @@ char *extract_code(char *file, int size)
 
 int fill_champ(champ_t **warriors)
 {
-    char *file;
+    unsigned char *file;
 
     for (int i = 0; warriors[i]; i++) {
         file = read_file(warriors[i]->file);

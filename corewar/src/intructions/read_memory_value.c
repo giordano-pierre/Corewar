@@ -6,7 +6,7 @@
 */
 #include "../../include/corewar.h"
 
-int read_memory_value(char *memory, int address, int size)
+int read_memory_value(unsigned char *memory, int address, int size)
 {
     int value = 0;
 

@@ -8,14 +8,24 @@
 
 corewar_t *create_base(void)
 {
-    corewar_t *base = malloc(sizeof(corewar_t));
+    corewar_t *corewar = malloc(sizeof(corewar_t));
 
-    base->cycle_to_die = CYCLE_TO_DIE;
-    base->dump = -1;
-    base->last_live = NULL;
-    base->mem = NULL;
-    base->nbr_live = NBR_LIVE;
-    base->warriors = malloc(sizeof(champ_t *));
-    base->warriors[0] = NULL;
-    return base;
+    corewar->cycle_to_die = CYCLE_TO_DIE;
+    corewar->dump = -1;
+    corewar->last_live = -1;
+    corewar->mem = NULL;
+    corewar->nbr_live = NBR_LIVE;
+    corewar->warriors = malloc(sizeof(champ_t *));
+    corewar->warriors[0] = NULL;
+    corewar->nb_live = 0;
+    corewar->nb_cycle = 0;
+    return corewar;
+}
+
+void print_reg(int reg[REG_NUMBER])
+{
+    for (int i = 0; i < REG_NUMBER; i++) {
+        my_printf("%d : ", reg[i]);
+    }
+    my_printf("\n");
 }
