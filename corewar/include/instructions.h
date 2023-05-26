@@ -27,7 +27,7 @@
     //add
     void add_function(champ_t *champion, corewar_t *corewar);
 
-    //and
+    //and.c
     void and_function(champ_t *champion, corewar_t *corewar);
 
     //live.c
