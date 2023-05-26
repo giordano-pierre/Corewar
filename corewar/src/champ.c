@@ -12,11 +12,3 @@ champ_t **create_champ(champ_t **warriors)
     warriors = add_tab(warriors, 0, "bill.cor", 2);
     return warriors;
 }
-
-void print_champ(champ_t **warriors)
-{
-    for (int i = 0; warriors[i]; i++) {
-        my_printf("%s: %d, %d\n", warriors[i]->file, warriors[i]->nb_prog,
-        warriors[i]->adress);
-    }
-}
