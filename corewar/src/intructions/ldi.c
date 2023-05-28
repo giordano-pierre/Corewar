@@ -30,7 +30,7 @@ int read_argument_value(argument_t *arg)
 
 void indirect_load_fonction(corewar_t *corewar, champ_t *champion)
 {
-    int address;
+    int address = 0;
     int encod_byte = (unsigned char)corewar->mem[(champion->pc + 1) % MEM_SIZE];
     int arg1_type = (encod_byte >> 6) & 0b11;
     int arg2_type = (encod_byte >> 4) & 0b11;
