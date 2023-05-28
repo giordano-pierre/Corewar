@@ -70,8 +70,8 @@ void make_asm(char **file, char *filepath)
     char *new_name = name_file_point_core(filepath);
     FILE *fd = fopen(new_name, "w");
     instruct_t **info = get_info(file);
-    label_t **labels = create_label(info);
     int size = my_structlen(info);
+    label_t **labels = create_label(info, file, size);
 
     header.prog_size = inverse_magic(size);
     fwrite(&header, sizeof(struct header_s), 1, fd);

@@ -58,11 +58,13 @@ char *extract_label(char *str)
     return res;
 }
 
-label_t **create_label(instruct_t **info)
+label_t **create_label(instruct_t **info, char **file, int size)
 {
     label_t **labels = malloc(sizeof(label_t *));
     int tmp = 0;
     int line = 0;
+    int len = my_arraylen(file);
+    char **last_line = my_str_to_word_array(file[len - 1]);
 
     labels[0] = NULL;
     for (int i = 0; info[i]; i++) {
@@ -74,5 +76,7 @@ label_t **create_label(instruct_t **info)
         if (info[i]->label && info[i]->inst == 1)
             labels = add_label(labels, info[i]->label, line);
     }
+    if (finish_label(last_line) == 0)
+        labels = add_label(labels, extract_label(last_line[0]), size);
     return labels;
 }

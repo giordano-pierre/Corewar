@@ -37,3 +37,12 @@ void fill_label(instruct_t **info, label_t **labels)
             get_label_code(info[i], labels, line);
     }
 }
+
+int finish_label(char **last_line)
+{
+    if (last_line[1] != NULL)
+        return -1;
+    if (find_double_point(last_line[0]) == 0)
+        return 0;
+    return -1;
+}
