@@ -20,6 +20,9 @@ void or_function(corewar_t *corewar, champ_t *champion)
         champion->reg[reg_dst_num - 1] = champion->reg[reg_src1_num - 1] &
             champion->reg[reg_src2_num - 1];
     }
-    champion->carry = (champion->reg[reg_dst_num - 1] == 0) ? 1 : 0;
+    if (champion->reg[reg_dst_num - 1] == 0)
+        champion->carry = 1;
+    else
+        champion->carry = 0;
     champion->pc += 5;
 }
