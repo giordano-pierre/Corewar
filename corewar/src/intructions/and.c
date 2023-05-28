@@ -7,7 +7,7 @@
 
 #include "../../include/corewar.h"
 
-void or_function(corewar_t *corewar, champ_t *champion)
+void and_function(corewar_t *corewar, champ_t *champion)
 {
     if (good_arg(corewar, champion))
         return;
