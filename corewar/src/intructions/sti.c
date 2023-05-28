@@ -49,7 +49,6 @@ void indirect_store(corewar_t *corewar, champ_t *champion)
         reg_src_num = corewar->mem[(champion->pc + 2) % MEM_SIZE];
     } else
         return;
-    int val1 = arg_val(corewar->mem, champion->pc + 2, arg2_type, champion);
     int val2 = arg_val(corewar->mem, champion->pc + 2 + get_size(arg2_type),
         arg3_type, champion);
     int val3 = arg_val(corewar->mem, champion->pc + 2 + get_size(arg2_type)
