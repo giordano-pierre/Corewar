@@ -7,26 +7,22 @@
 
 #include "../../include/corewar.h"
 
-void sub_funtion(champ_t *champion, corewar_t *corewar)
+void sub_function(champ_t *champion, corewar_t *corewar)
 {
-    int adress;
-    int encod_byt = (unsigned char)corewar->mem[(champion->pc + 1) % MEM_SIZE];
-    int arg1_type = (encod_byt >> 6) & 0b11;
-    int arg2_type = (encod_byt >> 4) & 0b11;
-    int arg3_type = (encod_byt >> 2) & 0b11;
-    argument_t arg1 = {corewar->mem, champion->pc + 2, arg1_type,
-        &adress, champion};
-    argument_t arg2 = {corewar->mem, champion->pc + 2 + adress,
-        arg2_type, &adress, champion};
-    argument_t arg3 = {corewar->mem, champion->pc + 2 + adress,
-        arg3_type, &adress, champion};
-    int frst_arg = read_argument_value(&arg1);
-    int secnd_arg = read_argument_value(&arg2);
-    int thrd_arg = read_argument_value(&arg3);
-    int res = secnd_arg - frst_arg;
-    if (res == 0) champion->carry = 1;
+    if (good_arg(corewar, champion))
+        return;
+    int reg_dst_num = corewar->mem[(champion->pc + 2) % MEM_SIZE];
+    int reg_src1_num = corewar->mem[(champion->pc + 2 + 1) % MEM_SIZE];
+    int reg_src2_num = corewar->mem[(champion->pc + 2 + 1 + 1) % MEM_SIZE];
+    if (reg_dst_num >= 1 && reg_dst_num <= REG_NUMBER &&
+        reg_src1_num >= 1 && reg_src1_num <= REG_NUMBER &&
+        reg_src2_num >= 1 && reg_src2_num <= REG_NUMBER) {
+        champion->reg[reg_dst_num - 1] = champion->reg[reg_src1_num - 1] -
+            champion->reg[reg_src2_num - 1];
+    }
+    if (champion->reg[reg_dst_num - 1] == 0)
+        champion->carry = 1;
     else
         champion->carry = 0;
-    adress = (champion->pc + ((frst_arg + secnd_arg) % IDX_MOD)) % MEM_SIZE;
-    champion->pc += 5 + adress;
+    champion->pc += 5;
 }
