@@ -58,5 +58,4 @@
     // sti.c
     void indirect_store(corewar_t *corewar, champ_t *champion);
 
-
 #endif /* !INSTRUCTIONS_H_ */
