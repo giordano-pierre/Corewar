@@ -99,11 +99,12 @@
     int is_label_char(char c);
     int label_size(char *label);
     char *extract_label(char *str);
-    label_t **create_label(instruct_t **info);
+    label_t **create_label(instruct_t **info, char **file, int size);
 
     // label_bis.c
     void fill_label(instruct_t **info, label_t **labels);
     void get_label_code(instruct_t *param, label_t **labels, int line);
     int get_label_line(label_t **labels, char *search);
+    int finish_label(char **last_line);
 
 #endif /* !GENERATOR_H_ */
