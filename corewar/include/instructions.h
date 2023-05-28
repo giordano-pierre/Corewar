@@ -30,7 +30,7 @@
     void add_function(champ_t *champion, corewar_t *corewar);
 
     //and.c
-    void and_function(champ_t *champion, corewar_t *corewar);
+    void and_function(corewar_t *corewar, champ_t *champion);
 
     // or.c
     void or_function(corewar_t *corewar, champ_t *champion);
@@ -57,5 +57,8 @@
 
     // sti.c
     void indirect_store(corewar_t *corewar, champ_t *champion);
+
+    //sub.c
+    void sub_function(champ_t *champion, corewar_t *corewar);
 
 #endif /* !INSTRUCTIONS_H_ */
