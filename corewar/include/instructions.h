@@ -61,4 +61,7 @@
     //sub.c
     void sub_function(champ_t *champion, corewar_t *corewar);
 
+    // st.c
+    void direct_store(corewar_t *corewar, champ_t *champion);
+
 #endif /* !INSTRUCTIONS_H_ */
