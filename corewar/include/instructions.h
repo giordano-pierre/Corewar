@@ -67,4 +67,7 @@
     // st.c
     void direct_store(corewar_t *corewar, champ_t *champion);
 
+    // zjump.c
+    void zjump_function(champ_t *champion, corewar_t *corewar);
+
 #endif /* !INSTRUCTIONS_H_ */
