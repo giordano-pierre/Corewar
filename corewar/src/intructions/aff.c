@@ -9,7 +9,8 @@
 
 void aff_function(champ_t *champion, corewar_t *corewar)
 {
-    int re = read_register(corewar->mem[(champion->pc + 2) % MEM_SIZE], T_REG);
+    int num_reg = corewar->mem[(champion->pc + 2) % MEM_SIZE];
+    int re = champion->reg[num_reg - 1];
     char c = re % 256;
     my_printf("%c\n", c);
 
