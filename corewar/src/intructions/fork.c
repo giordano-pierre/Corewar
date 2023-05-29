@@ -66,12 +66,12 @@ void copy_champion_state(champ_t *src, champ_t *dest, int new_pc)
     }
 }
 
-int load_champ_fork(unsigned char *mem, champ_t *champ)
+int load_champ_fork(unsigned char *mem, int add, champ_t *champ)
 {
     int ind = champ->adress;
 
-    for (int i = 0; i < champ->size; i++, ind++) {
-        mem[ind % MEM_SIZE] = champ->code[i];
+    for (int i = 0; i < champ->size; i++, ind++, add++) {
+        mem[ind % MEM_SIZE] = mem[add % MEM_SIZE];
     }
     return 0;
 }
@@ -85,6 +85,6 @@ void fork_fonction(corewar_t *corewar, champ_t *champion)
 
     copy_champion_state(champion, new_champion, new_pc);
     add_warrior(corewar, new_champion);
-    load_champ_fork(corewar->mem, new_champion);
+    load_champ_fork(corewar->mem, champion->adress, new_champion);
     new_champion->pc += 3;
 }
