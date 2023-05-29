@@ -81,4 +81,7 @@
     // lfork.c
     void lfork_fonction(corewar_t *corewar, champ_t *champion);
 
+    //aff.c
+    void aff_function(champ_t *champion, corewar_t *corewar);
+
 #endif /* !INSTRUCTIONS_H_ */
