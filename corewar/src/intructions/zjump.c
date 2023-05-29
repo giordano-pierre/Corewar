@@ -18,6 +18,6 @@ void zjump_function(champ_t *champion, corewar_t *corewar)
     if (champion->carry == 0)
         champion->pc += pc_size;
     if (champion->carry == 1)
-        champion->pc = var_1;
+        champion->pc += var_1;
     return;
 }
