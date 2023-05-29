@@ -9,12 +9,12 @@
 int exec_funct_six(corewar_t *corewar, champ_t *champion)
 {
     if (corewar->mem[champion->pc] == 15) {
-        my_printf("lfork\n");
+        lfork_fonction(corewar, champion);
         champion->sleep = op_tab[14].nbr_cycles - 1;
         return -1;
     }
     if (corewar->mem[champion->pc] == 16) {
-        my_printf("aff\n");
+        aff_function(champion, corewar);
         champion->sleep = op_tab[15].nbr_cycles - 1;
         return -1;
     }
@@ -24,17 +24,17 @@ int exec_funct_six(corewar_t *corewar, champ_t *champion)
 int exec_funct_five(corewar_t *corewar, champ_t *champion)
 {
     if (corewar->mem[champion->pc] == 12) {
-        my_printf("fork\n");
+        fork_fonction(corewar, champion);
         champion->sleep = op_tab[11].nbr_cycles - 1;
         return -1;
     }
     if (corewar->mem[champion->pc] == 13) {
-        my_printf("lld\n");
+        direct_long_load_fonction(corewar, champion);
         champion->sleep = op_tab[12].nbr_cycles - 1;
         return -1;
     }
     if (corewar->mem[champion->pc] == 14) {
-        my_printf("lldi\n");
+        long_indirect_load_fonction(corewar, champion);
         champion->sleep = op_tab[13].nbr_cycles - 1;
         return -1;
     }
@@ -46,17 +46,17 @@ int exec_funct_five(corewar_t *corewar, champ_t *champion)
 int exec_funct_four(corewar_t *corewar, champ_t *champion)
 {
     if (corewar->mem[champion->pc] == 9) {
-        my_printf("zjump\n");
+        zjump_function(champion, corewar);
         champion->sleep = op_tab[8].nbr_cycles - 1;
         return -1;
     }
     if (corewar->mem[champion->pc] == 10) {
-        my_printf("ldi\n");
+        indirect_load_fonction(corewar, champion);
         champion->sleep = op_tab[9].nbr_cycles - 1;
         return -1;
     }
     if (corewar->mem[champion->pc] == 11) {
-        my_printf("sti\n");
+        indirect_store(corewar, champion);
         champion->sleep = op_tab[10].nbr_cycles - 1;
         return -1;
     }
