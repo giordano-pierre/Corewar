@@ -9,17 +9,17 @@
 int exec_funct_three(corewar_t *corewar, champ_t *champion)
 {
     if (corewar->mem[champion->pc] == 6) {
-        my_printf("and\n");
+        and_function(corewar, champion);
         champion->sleep = op_tab[5].nbr_cycles - 1;
         return -1;
     }
     if (corewar->mem[champion->pc] == 7) {
-        my_printf("or\n");
+        or_function(corewar, champion);
         champion->sleep = op_tab[6].nbr_cycles - 1;
         return -1;
     }
     if (corewar->mem[champion->pc] == 8) {
-        my_printf("xor\n");
+        xor_function(corewar, champion);
         champion->sleep = op_tab[7].nbr_cycles - 1;
         return -1;
     }
@@ -31,17 +31,17 @@ int exec_funct_three(corewar_t *corewar, champ_t *champion)
 int exec_funct_two(corewar_t *corewar, champ_t *champion)
 {
     if (corewar->mem[champion->pc] == 3) {
-        my_printf("st\n");
+        direct_store(corewar, champion);
         champion->sleep = op_tab[2].nbr_cycles - 1;
         return -1;
     }
     if (corewar->mem[champion->pc] == 4) {
-        my_printf("add\n");
+        add_function(champion, corewar);
         champion->sleep = op_tab[3].nbr_cycles - 1;
         return -1;
     }
     if (corewar->mem[champion->pc] == 5) {
-        my_printf("sub\n");
+        sub_function(champion, corewar);
         champion->sleep = op_tab[4].nbr_cycles - 1;
         return -1;
     }
@@ -57,12 +57,12 @@ void exec_funct(corewar_t *corewar, champ_t *champion)
         return;
     }
     if (corewar->mem[champion->pc] == 1) {
-        my_printf("live\n");
+        live_fonction(champion, corewar);
         champion->sleep = op_tab[0].nbr_cycles - 1;
         return;
     }
     if (corewar->mem[champion->pc] == 2) {
-        my_printf("ld\n");
+        direct_load_fonction(corewar, champion);
         champion->sleep = op_tab[1].nbr_cycles - 1;
         return;
     }
