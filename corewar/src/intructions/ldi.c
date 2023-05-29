@@ -23,7 +23,7 @@ int param, int *pc_size)
         *pc_size = *pc_size + 2;
     } else {
         tmp = read_memory_value(corewar->mem,
-        (champion->pc + *pc_size)  % MEM_SIZE, 2);
+        (champion->pc + *pc_size) % MEM_SIZE, 2);
         res = read_memory_value(corewar->mem,
         (champion->pc + tmp) % MEM_SIZE, 4);
         *pc_size = *pc_size + 2;
