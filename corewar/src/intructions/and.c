@@ -36,10 +36,9 @@ void and_function(corewar_t *corewar, champ_t *champion)
         return;
     int var_1 = get_param_value(corewar, champion, 0, &pc_size);
     int var_2 = get_param_value(corewar, champion, 1, &pc_size);
-    my_printf("%d - %d\n", var_1, var_2);
     int reg_dst_num = corewar->mem[(champion->pc + pc_size) % MEM_SIZE];
     if (reg_dst_num >= 1 && reg_dst_num <= REG_NUMBER)
-        champion->reg[reg_dst_num - 1] = var_1 && var_2;
+        champion->reg[reg_dst_num - 1] = var_1 & var_2;
     if (champion->reg[reg_dst_num - 1] == 0)
         champion->carry = 1;
     else

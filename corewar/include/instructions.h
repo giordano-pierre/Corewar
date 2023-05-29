@@ -32,6 +32,8 @@
 
     //and.c
     void and_function(corewar_t *corewar, champ_t *champion);
+    int get_param_value(corewar_t *corewar, champ_t *champion,
+    int param, int *pc_size);
 
     // or.c
     void or_function(corewar_t *corewar, champ_t *champion);
