@@ -13,41 +13,58 @@ int read_argument_value(argument_t *arg)
     if (arg->arg_type == T_REG) {
         int reg_num = (unsigned char)arg->memory[arg->address % MEM_SIZE];
         value = arg->champion->reg[reg_num - 1];
-        *(arg->out_address) = 1;
+        *(arg->out_address) += 1;
     } else if (arg->arg_type == T_DIR) {
         value = read_memory_value(arg->memory,
-            arg->address % MEM_SIZE, DIR_SIZE);
-        *(arg->out_address) = DIR_SIZE;
+            arg->address % MEM_SIZE, IND_SIZE);
+        *(arg->out_address) += IND_SIZE;
     } if (arg->arg_type == T_IND) {
         int offset = read_memory_value(arg->memory,
             arg->address % MEM_SIZE, IND_SIZE);
         int effective_address = (arg->champion->pc + offset) % MEM_SIZE;
         value = read_memory_value(arg->memory, effective_address, REG_SIZE);
-        *(arg->out_address) = IND_SIZE;
+        *(arg->out_address) += IND_SIZE;
     }
     return value;
 }
 
+int get_param_value_bis(corewar_t *corewar, champ_t *champion,
+int param, int *pc_size)
+{
+    int encoding_byte = corewar->mem[(champion->pc + 1) % MEM_SIZE];
+    int res;
+    int tmp;
+
+    if (((encoding_byte >> (6 - (2 * param))) & 0b11) == T_REG) {
+        tmp = corewar->mem[(champion->pc + *pc_size) % MEM_SIZE];
+        res = champion->reg[tmp - 1];
+        *pc_size = *pc_size + 1;
+    } else if (((encoding_byte >> (6 - (2 * param))) & 0b11) == T_DIR) {
+        res = read_memory_value(corewar->mem,
+        (champion->pc + *pc_size) % MEM_SIZE, 2);
+        *pc_size = *pc_size + 2;
+    } else {
+        tmp = read_memory_value(corewar->mem,
+        (champion->pc + *pc_size)  % MEM_SIZE, 2);
+        res = read_memory_value(corewar->mem,
+        (champion->pc + tmp) % MEM_SIZE, 4);
+        *pc_size = *pc_size + 2;
+    }
+    return res;
+}
+
 void indirect_load_fonction(corewar_t *corewar, champ_t *champion)
 {
-    int address = 0;
-    int encod_byte = (unsigned char)corewar->mem[(champion->pc + 1) % MEM_SIZE];
-    int arg1_type = (encod_byte >> 6) & 0b11;
-    int arg2_type = (encod_byte >> 4) & 0b11;
-    int arg3_type = (encod_byte >> 2) & 0b11;
-
-    argument_t arg1 = {corewar->mem, champion->pc + 2, arg1_type,
-        &address, champion};
-    argument_t arg2 = {corewar->mem, champion->pc + 2 + address,
-        arg2_type, &address, champion};
-    argument_t arg3 = {corewar->mem, champion->pc + 2 + address,
-        arg3_type, &address, champion};
-    int val1 = read_argument_value(&arg1);
-    int val2 = read_argument_value(&arg2);
-    int val3 = read_argument_value(&arg3);
-    if (val3 < 1 || val3 > REG_NUMBER) return;
-    address = (champion->pc + ((val1 + val2) % IDX_MOD)) % MEM_SIZE;
-    champion->reg[val3 - 1] = read_memory_value(corewar->mem, address,REG_SIZE);
+    int pc_size = 2;
+    int val1 = get_param_value_bis(corewar, champion, 0, &pc_size);
+    int val2 = get_param_value_bis(corewar, champion, 1, &pc_size);
+    int val3 = corewar->mem[(champion->pc + pc_size) % MEM_SIZE];
+    my_printf("%d\n", val1);
+    my_printf("%d\n", val2);
+    my_printf("%d\n", val3);
+    my_printf("%d\n", champion->pc);
+    int address = (champion->pc + ((val1 + val2) % IDX_MOD)) % MEM_SIZE;
+    champion->reg[val3 - 1] = corewar->mem[address];
     champion->carry = (champion->reg[val3 - 1] == 0);
-    champion->pc += 2 + address;
+    champion->pc = champion->pc + pc_size % MEM_SIZE;
 }

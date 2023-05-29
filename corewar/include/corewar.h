@@ -20,9 +20,6 @@
 #ifndef SOLVER_H_
     #define SOLVER_H_
 
-    #define CHAMPION_NAME_OFFSET 4
-    #define CHAMPION_NAME_LENGTH 128
-
     // main.c;
     void print_h(void);
 
