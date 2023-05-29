@@ -17,8 +17,8 @@ void sub_function(champ_t *champion, corewar_t *corewar)
     if (reg_dst_num >= 1 && reg_dst_num <= REG_NUMBER &&
         reg_src1_num >= 1 && reg_src1_num <= REG_NUMBER &&
         reg_src2_num >= 1 && reg_src2_num <= REG_NUMBER) {
-        champion->reg[reg_dst_num - 1] = champion->reg[reg_src1_num - 1] -
-            champion->reg[reg_src2_num - 1];
+        champion->reg[reg_dst_num - 1] = champion->reg[reg_src2_num - 1] -
+            champion->reg[reg_src1_num - 1];
     }
     if (champion->reg[reg_dst_num - 1] == 0)
         champion->carry = 1;
