@@ -26,6 +26,8 @@ void kill_prog(corewar_t *corewar)
 
 void print_winner(corewar_t *corewar)
 {
+    if (corewar->dump != -1)
+        print_mem(corewar->mem);
     if (corewar->last_live == -1) {
         my_printf("Nobody won the fight !\n");
         return;
