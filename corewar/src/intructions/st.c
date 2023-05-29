@@ -31,12 +31,12 @@ void use_arg2(corewar_t *corewar, champ_t *champion, int r_src, int arg2_type)
     int r_dst;
 
     if (arg2_type == T_REG) {
-        r_dst = corewar->mem[(champion->pc + 2) % MEM_SIZE];
+        r_dst = corewar->mem[(champion->pc + 3) % MEM_SIZE];
     } else if (arg2_type == T_IND) {
         int arg2_value = read_two_arg_st(corewar->mem, champion->pc);
         int adress = (champion->pc + arg2_value % IDX_MOD) % MEM_SIZE;
         write_mem(corewar->mem, adress, REG_SIZE, champion->reg[r_src - 1]);
-        champion->pc += 3;
+        champion->pc += 5;
         champion->carry = (champion->reg[r_src - 1] == 0) ? 1 : 0;
         return;
     } else {
@@ -44,8 +44,8 @@ void use_arg2(corewar_t *corewar, champ_t *champion, int r_src, int arg2_type)
         return;
     }
     if (r_src >= 1 && r_src <= REG_NUMBER && r_dst >= 1 && r_dst <= REG_NUMBER)
-        write_into_mem_st(corewar, champion, r_src, r_dst);
-    champion->pc += 2;
+        champion->reg[r_dst - 1] = champion->reg[r_src - 1];
+    champion->pc += 4;
     champion->carry = (champion->reg[r_src - 1] == 0) ? 1 : 0;
 }
 
@@ -63,5 +63,4 @@ void direct_store(corewar_t *corewar, champ_t *champion)
         return;
     }
     use_arg2(corewar, champion, r_src, arg2_type);
-    champion->pc += 2;
 }
