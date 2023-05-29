@@ -52,7 +52,8 @@
     void direct_long_load_fonction(corewar_t *corewar, champ_t *champion);
 
     // ldi.c
-    int read_argument_value(argument_t *arg);
+    int get_param_value_bis(corewar_t *corewar, champ_t *champion,
+    int param, int *pc_size);
     void indirect_load_fonction(corewar_t *corewar, champ_t *champion);
 
     // lldi.c

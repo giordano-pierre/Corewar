@@ -6,28 +6,6 @@
 */
 #include "../../include/corewar.h"
 
-int read_argument_value(argument_t *arg)
-{
-    int value = 0;
-
-    if (arg->arg_type == T_REG) {
-        int reg_num = (unsigned char)arg->memory[arg->address % MEM_SIZE];
-        value = arg->champion->reg[reg_num - 1];
-        *(arg->out_address) += 1;
-    } else if (arg->arg_type == T_DIR) {
-        value = read_memory_value(arg->memory,
-            arg->address % MEM_SIZE, IND_SIZE);
-        *(arg->out_address) += IND_SIZE;
-    } if (arg->arg_type == T_IND) {
-        int offset = read_memory_value(arg->memory,
-            arg->address % MEM_SIZE, IND_SIZE);
-        int effective_address = (arg->champion->pc + offset) % MEM_SIZE;
-        value = read_memory_value(arg->memory, effective_address, REG_SIZE);
-        *(arg->out_address) += IND_SIZE;
-    }
-    return value;
-}
-
 int get_param_value_bis(corewar_t *corewar, champ_t *champion,
 int param, int *pc_size)
 {
