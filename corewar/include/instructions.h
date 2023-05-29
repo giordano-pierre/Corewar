@@ -70,4 +70,14 @@
     // zjump.c
     void zjump_function(champ_t *champion, corewar_t *corewar);
 
+    // fork.c
+    void fork_fonction(corewar_t *corewar, champ_t *champion);
+    void add_warrior(corewar_t *corewar, champ_t *new_champ);
+    champ_t *create_champion(void);
+    void copy_champion_state(champ_t *src, champ_t *dest, int new_pc);
+    int load_champ_fork(unsigned char *mem, champ_t *champ);
+
+    // lfork.c
+    void lfork_fonction(corewar_t *corewar, champ_t *champion);
+
 #endif /* !INSTRUCTIONS_H_ */
