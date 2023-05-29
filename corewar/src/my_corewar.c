@@ -47,7 +47,6 @@ int my_corewar(corewar_t *corewar)
         return -1;
     }
     while (all_is_dead(corewar->warriors) && corewar->dump != 0) {
-        my_printf("%d\n", corewar->nb_cycle);
         if (corewar->nb_cycle > corewar->cycle_to_die)
             kill_prog(corewar);
         for (int i = 0; corewar->warriors[i]; i++) {
