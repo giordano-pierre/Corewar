@@ -4,7 +4,6 @@
 ** File description:
 ** struct
 */
-
 #include "../../op.h"
 
 #ifndef STRUCT_H_
@@ -45,6 +44,3 @@
     } argument_t;
 
 #endif /* !STRUCT_H_ */
-
-//      144
-//      "10 01 00 00"
