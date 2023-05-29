@@ -7,22 +7,42 @@
 
 #include "../../include/corewar.h"
 
+int get_param_value(corewar_t *corewar, champ_t *champion,
+int param, int *pc_size)
+{
+    int encoding_byte = corewar->mem[(champion->pc + 1) % MEM_SIZE];
+    int res;
+    int tmp;
+
+    if (((encoding_byte >> (6 - (2 * param))) & 0b11) == T_REG) {
+        tmp = corewar->mem[(champion->pc + *pc_size) % MEM_SIZE];
+        res = champion->reg[tmp - 1];
+        *pc_size = *pc_size + 1;
+    } else if (((encoding_byte >> (6 - (2 * param))) & 0b11) == T_DIR) {
+        res = read_memory_value(corewar->mem, champion->pc + *pc_size, 4);
+        *pc_size = *pc_size + 4;
+    } else {
+        tmp = read_memory_value(corewar->mem, champion->pc + *pc_size, 2);
+        res = read_memory_value(corewar->mem, champion->pc + tmp, 4);
+        *pc_size = *pc_size + 2;
+    }
+    return res;
+}
+
 void and_function(corewar_t *corewar, champ_t *champion)
 {
-    if (good_arg(corewar, champion))
+    int pc_size = 2;
+    if (good_arg_bis(corewar, champion))
         return;
-    int reg_src1_num = corewar->mem[(champion->pc + 2) % MEM_SIZE];
-    int reg_src2_num = corewar->mem[(champion->pc + 2 + 1) % MEM_SIZE];
-    int reg_dst_num = corewar->mem[(champion->pc + 2 + 1 + 1) % MEM_SIZE];
-    if (reg_dst_num >= 1 && reg_dst_num <= REG_NUMBER &&
-        reg_src1_num >= 1 && reg_src1_num <= REG_NUMBER &&
-        reg_src2_num >= 1 && reg_src2_num <= REG_NUMBER) {
-        champion->reg[reg_dst_num - 1] = champion->reg[reg_src1_num - 1] &
-            champion->reg[reg_src2_num - 1];
-    }
+    int var_1 = get_param_value(corewar, champion, 0, &pc_size);
+    int var_2 = get_param_value(corewar, champion, 1, &pc_size);
+    my_printf("%d - %d\n", var_1, var_2);
+    int reg_dst_num = corewar->mem[(champion->pc + pc_size) % MEM_SIZE];
+    if (reg_dst_num >= 1 && reg_dst_num <= REG_NUMBER)
+        champion->reg[reg_dst_num - 1] = var_1 && var_2;
     if (champion->reg[reg_dst_num - 1] == 0)
         champion->carry = 1;
     else
         champion->carry = 0;
-    champion->pc += 5;
+    champion->pc += pc_size;
 }

@@ -25,6 +25,7 @@
 
     // good_register.c
     int good_arg(corewar_t *corewar, champ_t *champion);
+    int good_arg_bis(corewar_t *corewar, champ_t *champion);
 
     //add.c
     void add_function(champ_t *champion, corewar_t *corewar);
