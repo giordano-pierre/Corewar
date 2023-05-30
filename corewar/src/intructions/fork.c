@@ -18,9 +18,10 @@ void add_warrior(corewar_t *corewar, champ_t *new_champ)
         }
     }
     new_warriors = malloc((new_size + 1) * sizeof(champ_t *));
-    new_warriors[0] = new_champ;
     for (i = 0; i < new_size - 1; i++)
-        new_warriors[i + 1] = corewar->warriors[i];
+        new_warriors[i] = corewar->warriors[i];
+    new_warriors[i] = new_champ;
+    new_warriors[new_size] = NULL;
     if (corewar->warriors != NULL)
         free(corewar->warriors);
     corewar->warriors = new_warriors;
@@ -56,10 +57,10 @@ void copy_champion_state(champ_t *src, champ_t *dest, int new_pc)
     dest->size = src->size;
     dest->nb_prog = src->nb_prog;
     dest->adress = new_pc;
-    dest->pc = src->pc;
+    dest->pc = new_pc;
     dest->carry = src->carry;
     dest->is_alive = src->is_alive;
-    dest->sleep = src->sleep;
+    dest->sleep = 1;
 
     for (int i = 0; i < REG_NUMBER; i++) {
         dest->reg[i] = src->reg[i];

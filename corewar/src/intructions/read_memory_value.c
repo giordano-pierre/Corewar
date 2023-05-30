@@ -16,3 +16,14 @@ int read_memory_value(unsigned char *memory, int address, int size)
     }
     return value;
 }
+
+int read_memory_value_bis(unsigned char *memory, int address, int size)
+{
+    int value = 0;
+
+    for (int i = 0; i < size; i++) {
+        value <<= 8;
+        value |= (unsigned char)memory[address + i];
+    }
+    return value;
+}

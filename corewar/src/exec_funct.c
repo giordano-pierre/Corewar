@@ -52,6 +52,8 @@ int exec_funct_two(corewar_t *corewar, champ_t *champion)
 
 void exec_funct(corewar_t *corewar, champ_t *champion)
 {
+    if (champion->is_alive == -1)
+        return;
     if (champion->sleep > 0) {
         champion->sleep--;
         return;
@@ -68,4 +70,5 @@ void exec_funct(corewar_t *corewar, champ_t *champion)
     }
     if (exec_funct_two(corewar, champion) == -1)
         return;
+    champion->is_alive = -1;
 }

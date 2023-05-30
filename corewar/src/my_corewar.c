@@ -18,9 +18,11 @@ int all_is_dead(champ_t **warriors)
 void kill_prog(corewar_t *corewar)
 {
     corewar->nb_cycle = 0;
-    for (int i = 0; corewar->warriors[i]; i++) {
+    for (int i = 0; corewar->warriors[i] != NULL; i++) {
         if (corewar->warriors[i]->is_alive != 1)
             corewar->warriors[i]->is_alive = -1;
+        else
+            corewar->warriors[i]->is_alive = 0;
     }
 }
 
@@ -51,7 +53,7 @@ int my_corewar(corewar_t *corewar)
     while (all_is_dead(corewar->warriors) && corewar->dump != 0) {
         if (corewar->nb_cycle > corewar->cycle_to_die)
             kill_prog(corewar);
-        for (int i = 0; corewar->warriors[i]; i++) {
+        for (int i = 0; corewar->warriors[i] != NULL; i++) {
             exec_funct(corewar, corewar->warriors[i]);
         }
         corewar->nb_cycle++;

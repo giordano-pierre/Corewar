@@ -16,7 +16,6 @@ void zjump_function(champ_t *champion, corewar_t *corewar)
     }
     int var_1 = read_memory_value(corewar->mem, (champion->pc + 1)
     % MEM_SIZE, 2);
-    my_printf("%d\n", var_1);
     if (champion->carry == 1)
         champion->pc = (champion->pc + (var_1 % IDX_MOD)) % MEM_SIZE;
     return;
