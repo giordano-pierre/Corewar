@@ -13,6 +13,7 @@
     //intructions/
     // read_memory_value.c
     int read_memory_value(unsigned char *memory, int address, int size);
+    int read_memory_value_bis(unsigned char *memory, int address, int size);
 
     // update_register.c
     void update_register(int reg_num, int value, champ_t *champion);

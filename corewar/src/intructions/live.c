@@ -15,15 +15,6 @@ void print_live(champ_t *champion, corewar_t *corewar)
     corewar->last_live = champion->nb_prog;
 }
 
-int get_adrr(champ_t *champion)
-{
-    int adrr = (champion->adress + champion->pc) % MEM_SIZE;
-    if (adrr < 0) {
-        adrr += MEM_SIZE;
-    }
-    return adrr;
-}
-
 int live_fonction(champ_t *champion, corewar_t *corewar)
 {
     print_live(champion, corewar);

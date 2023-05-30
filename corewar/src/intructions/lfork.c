@@ -15,6 +15,5 @@ void lfork_fonction(corewar_t *corewar, champ_t *champion)
 
     copy_champion_state(champion, new_champion, new_pc);
     add_warrior(corewar, new_champion);
-    load_champ_fork(corewar->mem, champion->adress, new_champion);
     new_champion->pc += 3;
 }
