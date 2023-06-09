@@ -51,7 +51,8 @@ int fill_champ(champ_t **warriors)
             return -1;
         warriors[i]->name = extract_name(file);
         warriors[i]->comment = extract_comment(file);
-        warriors[i]->size = read_memory_value_bis(file, PROG_NAME_LENGTH + 8, 4);
+        warriors[i]->size = read_memory_value_bis(file,
+            PROG_NAME_LENGTH + 8, 4);
         warriors[i]->code = extract_code(file, warriors[i]->size);
         warriors[i]->pc = warriors[i]->adress;
         free(file);
